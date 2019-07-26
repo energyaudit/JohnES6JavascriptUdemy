@@ -263,20 +263,18 @@ switch (true) {
 
 var height;
 
-//height ='';
-//
-//if (height || height === 0) {
-//    console.log('Variable is defined');
-//} else {
-//    console.log('Variable has NOT been defined');
-//}
+height ='';
 
-// Equality operators
-height =23;
-if (height == '23') {
-    console.log('The == operator does type coercion!');
+if (height || height === 0) {
+    console.log('Variable is defined');
+} else {
+    console.log('Variable has NOT been defined');
 }
 
+// Equality operators
+if (height === '23') {
+    console.log('The == operator does type coercion!');
+}
 
 
 
@@ -321,9 +319,8 @@ if (scoreJohn > scoreMike) {
 
 
 
-
-// Functions
-
+///*****************************
+//* Functions
 
 function calculateAge(birthYear) {
     return 2018 - birthYear;
@@ -354,11 +351,11 @@ yearsUntilRetirement(1969, 'Jane');
 
 
 
-// Function Statements and Expressions
 
+//* Function Statements and Expressions
 
 // Function declaration
- function whatDoYouDo(job, firstName) {}
+// function whatDoYouDo(job, firstName) {}
 
 // Function expression
 var whatDoYouDo = function(job, firstName) {
@@ -379,6 +376,9 @@ console.log(whatDoYouDo('designer', 'Jane'));
 console.log(whatDoYouDo('retired', 'Mark'));
 
 
+
+
+
 //* Arrays
 
 // Initialize new array
@@ -390,7 +390,7 @@ console.log(names.length);
 
 // Mutate array data
 names[1] = 'Ben';
-names[names.length] = 'Mary';
+names[5] = 'Mary';
 console.log(names);
 
 // Different data types
@@ -405,15 +405,10 @@ john.pop();
 john.shift();
 console.log(john);
 
-console.log(john.indexOf(1990));
 console.log(john.indexOf(23));
 
 var isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'John IS a designer';
 console.log(isDesigner);
-
-
-
-
 
 //* CODING CHALLENGE 3
 
@@ -455,7 +450,7 @@ console.log(tips, finalValues);
 
 //* Objects and properties
 
-//Object literal
+// Object literal
 var john = {
     firstName: 'John',
     lastName: 'Smith',
@@ -481,6 +476,7 @@ jane.birthYear = 1969;
 jane['lastName'] = 'Smith';
 console.log(jane);
 
+
 //* Objects and methods
 
 var john = {
@@ -490,13 +486,12 @@ var john = {
     family: ['Jane', 'Mark', 'Bob', 'Emily'],
     job: 'teacher',
     isMarried: false,
-    calcAge: function() {
-        this.age = 2018 - this.birthYear;
+    calcAge: function(birthYear) {
+       return 2018 -birthYear;
     }
 };
 
-john.calcAge();
-console.log(john);
+console.log(john.calcAge(1990));
 
 //* CODING CHALLENGE 4
 
@@ -506,7 +501,7 @@ console.log(john);
 //3. In the end, log to the console who has the highest BMI, together with the full name and the respective BMI. Don't forget they might have the same BMI.
 //
 //Remember: BMI = mass / height^2 = mass / (height * height). (mass in kg and height in meter).
-//
+
 //GOOD LUCK 😀
 
 var john = {
@@ -528,17 +523,16 @@ var mark = {
         return this.bmi;
     }
 }
-
-if (john.calcBMI() > mark.calcBMI()) {
+john.calcBMI();
+mark.calcBMI();
+console.log(john,mark);
+if (john.bmi > mark.bmi ){
     console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
 } else if (mark.bmi > john.bmi) {
     console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
 } else {
     console.log('They have the same BMI');
 }
-
-
-
 
 
 //* Loops and iteration
@@ -548,7 +542,6 @@ for (var i = 1; i <= 20; i += 2) {
     console.log(i);
 }
 
-for(var i=0;i<10;i++){console.log(i)};
 // i = 0, 0 < 10 true, log i to console, i++
 // i = 1, 1 < 10 true, log i to the console, i++
 //...
@@ -568,6 +561,7 @@ while(i < john.length) {
     i++;
 }
 
+
 // continue and break statements
 var john = ['John', 'Smith', 1990, 'designer', false, 'blue'];
 
@@ -585,6 +579,7 @@ for (var i = 0; i < john.length; i++) {
 for (var i = john.length - 1; i >= 0; i--) {
     console.log(john[i]);
 }
+
 
 //* CODING CHALLENGE 5
 
@@ -620,19 +615,19 @@ var john = {
         for (var i = 0; i < this.bills.length; i++) {
             // Determine percentage based on tipping rules
             var percentage;
-            var bill = this.bills[i];
+        //    var bill = this.bills[i];
             
-            if (bill < 50) {
+            if (this.bill < 50) {
                 percentage = .2;
-            } else if (bill >= 50 && bill < 200) {
+            } else if (this.bill >= 50 && this.bill < 200) {
                 percentage = .15;
             } else {
                 percentage = .1;
             }
             
             // Add results to the corresponing arrays
-            this.tips[i] = bill * percentage;
-            this.finalValues[i] = bill + bill * percentage;
+            this.tips[i] = this.bill * percentage;
+            this.finalValues[i] = this.bill + this.bill * percentage;
         }
     }
 }
@@ -685,4 +680,3 @@ if (john.average > mark.average) {
 } else if (mark.average > john.average) {
     console.log(mark.fullName + '\'s family pays higher tips, with an average of $' + mark.average);
 }
-
