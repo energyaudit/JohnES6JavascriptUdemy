@@ -1,4 +1,4 @@
-# Course Material and FAQ for my Complete JavaScript Course
+# Course Material and FAQ for my Complete JavaScript Course from John
 
 This repo contains starter files and the finished project files for all the projects contained in the course.
 
@@ -8,9 +8,7 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 ## FAQ
 
-### Q1: How do I download the files?
 
-**A:** If you're new to GitHub and just want to download the complete package, hit the green button saying "Clone or download", choose the "Download ZIP" option, and you're good to go.
 
 ### Q2: I'm stuck in one of the projects. Where do I get help?
 
@@ -36,9 +34,7 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 **A:** Unfortunately, there is nothing I can do about it. The course is hosted on Udemy's platform, and sometimes they have small technical issues like this one. Please just come back a bit later or [contact their support team](https://support.udemy.com/hc/en-us).
 
-### Q8: Videos are blurred / have low quality, can you fix it?
 
-**A:** Please open video settings and change the quality from 'Auto' to another value, for example 720p. If that doesn't help, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
 
 ### Q9: Are the videos downloadable?
 
@@ -48,10 +44,4 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 **A:** First, you can subscribe to my email list [at my website](http://codingheroes.io/newsletter). Plus, I make important announcements on twitter [@jonasschmedtman](https://twitter.com/jonasschmedtman), so you should definitely follow me there 🔥
 
-### Q11: How do I get my certificate of completion?
 
-**A:** A certificate of completion is provided by Udemy after you complete 100% of the course. After completing the course, just click on the "Your progress" indicator in the top right-hand corner of the course page. If you want to change your name on the certificate, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
-
-### Q12: Do you accept pull requests?
-
-**A:** No, for the simple reason that I want this repository to contain the _exact_ same code that is shown in the videos. However, please feel free to add an issue if you found one.
