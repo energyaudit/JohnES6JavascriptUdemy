@@ -11,11 +11,14 @@ var Person = function(name, yearOfBirth, job) {
     this.name = name;
     this.yearOfBirth = yearOfBirth;
     this.job = job;
+    this.calculateAge  = function() {
+            console.log(2016 - this.yearOfBirth);
+        };
 }
 
-Person.prototype.calculateAge  = function() {
-    console.log(2016 - this.yearOfBirth);
-};
+//Person.prototype.calculateAge  = function() {
+//    console.log(2016 - this.yearOfBirth);
+//};
 
 Person.prototype.lastName = 'Smith';
 
@@ -34,10 +37,10 @@ console.log(mark.lastName);
 
 
 
-/////////////////////////////
-// Lecture: Object.create
+///////////////////////////
+ Lecture: Object.create
 
-var personProto = {//not capital,so it is not constructor
+var personProto = {
     calculateAge: function() {
         console.log(2016 - this.yearOfBirth);
     }
@@ -101,26 +104,26 @@ console.log(obj.city);
 
 /////////////////////////////
 // Lecture: Passing functions as arguments
-/*
+
 var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
-    var arrRes = [];
+    var arrRes = [];//arrayResult
     for (var i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));
+        arrRes.push(fn(arr[i]));//array build in push //method push value into array
     }
-    return arrRes;
+    return arrRes;//return arrayresult
 }
 
-function calculateAge(el) {
+function calculateAge(el) {//call back function
     return 2016 - el;
 }
 
-function isFullAge(el) {
+function isFullAge(el) {//call back function
     return el >= 18;
 }
 
-function maxHeartRate(el) {
+function maxHeartRate(el) {//call back function
     if (el >= 18 && el <= 81) {
         return Math.round(206.9 - (0.67 * el));
     } else {
@@ -134,14 +137,15 @@ var fullAges = arrayCalc(ages, isFullAge);
 var rates = arrayCalc(ages, maxHeartRate);
 
 console.log(ages);
+console.log(fullAges);
 console.log(rates);
-*/
+
 
 
 
 /////////////////////////////
 // Lecture: Functions returning functions
-/*
+
 function interviewQuestion(job) {
     if (job === 'designer') {
         return function(name) {
@@ -169,13 +173,13 @@ designerQuestion('Mark');
 designerQuestion('Mike');
 
 interviewQuestion('teacher')('Mark');
-*/
+
 
 
 
 /////////////////////////////
 // Lecture: IIFE
-/*
+
 function game() {
     var score = Math.random() * 10;
     console.log(score >= 5);
@@ -188,20 +192,20 @@ game();
     console.log(score >= 5);
 })();
 
-//console.log(score);
+//console.log(score);//error because no access inside //ifei
 
 
 (function (goodLuck) {
     var score = Math.random() * 10;
     console.log(score >= 5 - goodLuck);
 })(5);
-*/
+
 
 
 
 /////////////////////////////
 // Lecture: Closures
-/*
+
 function retirement(retirementAge) {
     var a = ' years left until retirement.';
     return function(yearOfBirth) {
@@ -234,13 +238,13 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion('teacher')('John');
-*/
+
 
 
 
 /////////////////////////////
 // Lecture: Bind, call and apply
-/*
+
 var john = {
     name: 'John',
     age: 26,
@@ -298,7 +302,7 @@ var ages = arrayCalc(years, calculateAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 console.log(ages);
 console.log(fullJapan);
-*/
+
 
 
 
@@ -329,7 +333,7 @@ c) correct answer (I would use a number for this)
 */
 
 
-/*
+
 (function() {
     function Question(question, answers, correct) {
         this.question = question;
@@ -376,7 +380,7 @@ c) correct answer (I would use a number for this)
 
     questions[n].checkAnswer(answer);
 })();
-*/
+
 
 
 
@@ -393,7 +397,7 @@ c) correct answer (I would use a number for this)
 */
 
 
-/*
+
 (function() {
     function Question(question, answers, correct) {
         this.question = question;
@@ -411,7 +415,7 @@ c) correct answer (I would use a number for this)
 
     Question.prototype.checkAnswer = function(ans, callback) {
         var sc;
-        
+
         if (ans === this.correct) {
             console.log('Correct answer!');
             sc = callback(true);
@@ -419,7 +423,7 @@ c) correct answer (I would use a number for this)
             console.log('Wrong answer. Try again :)');
             sc = callback(false);
         }
-        
+
         this.displayScore(sc);
     }
 
@@ -427,8 +431,8 @@ c) correct answer (I would use a number for this)
         console.log('Your current score is: ' + score);
         console.log('------------------------------');
     }
-    
-    
+
+
     var q1 = new Question('Is JavaScript the coolest programming language in the world?',
                           ['Yes', 'No'],
                           0);
@@ -440,9 +444,9 @@ c) correct answer (I would use a number for this)
     var q3 = new Question('What does best describe coding?',
                           ['Boring', 'Hard', 'Fun', 'Tediuos'],
                           2);
-    
+
     var questions = [q1, q2, q3];
-    
+
     function score() {
         var sc = 0;
         return function(correct) {
@@ -453,8 +457,8 @@ c) correct answer (I would use a number for this)
         }
     }
     var keepScore = score();
-    
-    
+
+
     function nextQuestion() {
 
         var n = Math.floor(Math.random() * questions.length);
@@ -464,12 +468,11 @@ c) correct answer (I would use a number for this)
 
         if(answer !== 'exit') {
             questions[n].checkAnswer(parseInt(answer), keepScore);
-            
+
             nextQuestion();
         }
     }
-    
+
     nextQuestion();
-    
+
 })();
-*/
