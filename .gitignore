@@ -1,0 +1,44 @@
+#Mac
+.DS_Store
+output
+
+#Mocha Reports
+results/
+cypress/results/
+mochareports/
+reports/
+screenshots/
+mochawesome_combined_report.json
+
+#Cypress
+cypress/screenshots/
+cypress/config/stag.json
+
+#NodeJS
+node_modules/
+
+#automocks
+automocks/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+package-lock.json
+
+#utils
+commonLog.utils.js
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+### Gradle ###
+.gradle
+build/
