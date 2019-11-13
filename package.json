@@ -1,0 +1,23 @@
+{
+  "name": "JohnES6JavascriptUdemy",
+  "version": "1.0.0",
+  "description": "This repo contains starter files and the finished project files for all the projects contained in the course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/energyaudit/JohnES6JavascriptUdemy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/energyaudit/JohnES6JavascriptUdemy/issues"
+  },
+  "homepage": "https://github.com/energyaudit/JohnES6JavascriptUdemy#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
