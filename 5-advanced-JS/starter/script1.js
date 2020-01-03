@@ -1,4 +1,3 @@
-
 // Lecture: Function constructor
 
 var john = {
@@ -7,13 +6,13 @@ var john = {
     job: 'teacher'
 };
 
-var Person = function(name, yearOfBirth, job) {
+var Person = function (name, yearOfBirth, job) {
     this.name = name;
     this.yearOfBirth = yearOfBirth;
     this.job = job;
-    this.calculateAge  = function() {
-            console.log(2016 - this.yearOfBirth);
-        };
+    this.calculateAge = function () {
+        console.log(2016 - this.yearOfBirth);
+    };
 }
 
 //Person.prototype.calculateAge  = function() {
@@ -38,10 +37,10 @@ console.log(mark.lastName);
 
 
 ///////////////////////////
- Lecture: Object.create
+Lecture: Object.create
 
 var personProto = {
-    calculateAge: function() {
+    calculateAge: function () {
         console.log(2016 - this.yearOfBirth);
     }
 };
@@ -52,9 +51,15 @@ john.yearOfBirth = 1990;
 john.job = 'teacher';
 
 var jane = Object.create(personProto, {
-    name: { value: 'Jane' },
-    yearOfBirth: { value: 1969 },
-    job: { value: 'designer' }
+    name: {
+        value: 'Jane'
+    },
+    yearOfBirth: {
+        value: 1969
+    },
+    job: {
+        value: 'designer'
+    }
 });
 
 
@@ -108,22 +113,22 @@ console.log(obj.city);
 var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
-    var arrRes = [];//arrayResult
+    var arrRes = []; //arrayResult
     for (var i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));//array build in push //method push value into array
+        arrRes.push(fn(arr[i])); //array build in push //method push value into array
     }
-    return arrRes;//return arrayresult
+    return arrRes; //return arrayresult
 }
 
-function calculateAge(el) {//call back function
+function calculateAge(el) { //call back function
     return 2016 - el;
 }
 
-function isFullAge(el) {//call back function
+function isFullAge(el) { //call back function
     return el >= 18;
 }
 
-function maxHeartRate(el) {//call back function
+function maxHeartRate(el) { //call back function
     if (el >= 18 && el <= 81) {
         return Math.round(206.9 - (0.67 * el));
     } else {
@@ -148,15 +153,15 @@ console.log(rates);
 
 function interviewQuestion(job) {
     if (job === 'designer') {
-        return function(name) {
+        return function (name) {
             console.log(name + ', can you please explain what UX design is?');
         }
     } else if (job === 'teacher') {
-        return function(name) {
+        return function (name) {
             console.log('What subject do you teach, ' + name + '?');
         }
     } else {
-        return function(name) {
+        return function (name) {
             console.log('Hello ' + name + ', what do you do?');
         }
     }
@@ -208,7 +213,7 @@ game();
 
 function retirement(retirementAge) {
     var a = ' years left until retirement.';
-    return function(yearOfBirth) {
+    return function (yearOfBirth) {
         var age = 2016 - yearOfBirth;
         console.log((retirementAge - age) + a);
     }
@@ -225,7 +230,7 @@ retirementIceland(1990);
 //retirement(66)(1990);
 
 function makeAdder(x) {
-    return function(y) {
+    return function (y) {
         return x + y;
     };
 }
@@ -233,7 +238,7 @@ function makeAdder(x) {
 var add5 = makeAdder(5);
 var add10 = makeAdder(10);
 console.log('makeAdder is a function factory — it creates functions which can add a specific value, In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10. add5 and add10 are both closures. They share the same function body definition, but store different lexical environments. In add5\'s lexical environment, x is 5, while in the lexical environment for add10, x is 10');
-console.log(add5(2));  // 7
+console.log(add5(2)); // 7
 console.log(add10(2)); // 12
 /*
 In essence, makeAdder is a function factory — it creates functions which can add a specific value to their argument. In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10.
@@ -242,7 +247,7 @@ add5 and add10 are both closures. They share the same function body definition, 
 */
 
 function interviewQuestion(job) {
-    return function(name) {
+    return function (name) {
         if (job === 'designer') {
             console.log(name + ', can you please explain what UX design is?');
         } else if (job === 'teacher') {
@@ -265,11 +270,11 @@ var john = {
     name: 'John',
     age: 26,
     job: 'teacher',
-    presentation: function(style, timeOfDay) {
+    presentation: function (style, timeOfDay) {
         if (style === 'formal') {
-            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' +  this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
         } else if (style === 'friendly') {
-            console.log('Hey! What\'s up? I\'m ' +  this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+            console.log('Hey! What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
         }
     }
 };
@@ -350,14 +355,14 @@ c) correct answer (I would use a number for this)
 
 
 
-(function() {
+(function () {
     function Question(question, answers, correct) {
         this.question = question;
         this.answers = answers;
         this.correct = correct;
     }
 
-    Question.prototype.displayQuestion = function() {
+    Question.prototype.displayQuestion = function () {
         console.log(this.question);
 
         for (var i = 0; i < this.answers.length; i++) {
@@ -365,7 +370,7 @@ c) correct answer (I would use a number for this)
         }
     }
 
-    Question.prototype.checkAnswer = function(ans) {
+    Question.prototype.checkAnswer = function (ans) {
         if (ans === this.correct) {
             console.log('Correct answer!');
 
@@ -376,15 +381,15 @@ c) correct answer (I would use a number for this)
 
     var q1 = new Question('Is JavaScript the coolest programming language in the world?',
                           ['Yes', 'No'],
-                          0);
+        0);
 
     var q2 = new Question('What is the name of this course\'s teacher?',
                           ['John', 'Micheal', 'Jonas'],
-                          2);
+        2);
 
     var q3 = new Question('What does best describe coding?',
                           ['Boring', 'Hard', 'Fun', 'Tediuos'],
-                          2);
+        2);
 
     var questions = [q1, q2, q3];
 
@@ -414,14 +419,14 @@ c) correct answer (I would use a number for this)
 
 
 
-(function() {
+(function () {
     function Question(question, answers, correct) {
         this.question = question;
         this.answers = answers;
         this.correct = correct;
     }
 
-    Question.prototype.displayQuestion = function() {
+    Question.prototype.displayQuestion = function () {
         console.log(this.question);
 
         for (var i = 0; i < this.answers.length; i++) {
@@ -429,7 +434,7 @@ c) correct answer (I would use a number for this)
         }
     }
 
-    Question.prototype.checkAnswer = function(ans, callback) {
+    Question.prototype.checkAnswer = function (ans, callback) {
         var sc;
 
         if (ans === this.correct) {
@@ -443,7 +448,7 @@ c) correct answer (I would use a number for this)
         this.displayScore(sc);
     }
 
-    Question.prototype.displayScore = function(score) {
+    Question.prototype.displayScore = function (score) {
         console.log('Your current score is: ' + score);
         console.log('------------------------------');
     }
@@ -451,21 +456,21 @@ c) correct answer (I would use a number for this)
 
     var q1 = new Question('Is JavaScript the coolest programming language in the world?',
                           ['Yes', 'No'],
-                          0);
+        0);
 
     var q2 = new Question('What is the name of this course\'s teacher?',
                           ['John', 'Micheal', 'Jonas'],
-                          2);
+        2);
 
     var q3 = new Question('What does best describe coding?',
                           ['Boring', 'Hard', 'Fun', 'Tediuos'],
-                          2);
+        2);
 
     var questions = [q1, q2, q3];
 
     function score() {
         var sc = 0;
-        return function(correct) {
+        return function (correct) {
             if (correct) {
                 sc++;
             }
@@ -482,7 +487,7 @@ c) correct answer (I would use a number for this)
 
         var answer = prompt('Please select the correct answer.');
 
-        if(answer !== 'exit') {
+        if (answer !== 'exit') {
             questions[n].checkAnswer(parseInt(answer), keepScore);
 
             nextQuestion();
@@ -492,3 +497,19 @@ c) correct answer (I would use a number for this)
     nextQuestion();
 
 })();
+
+/////////////////////the callback function
+function done() {
+    console.log("the callback function:Done");
+}
+
+//the parent function 
+function increment(num, callBack) {
+    for (var i = 0; i <= num; i++) {
+        console.log(i);
+    }
+    return callBack();
+}
+
+//the callback function is passed to the increment function 
+increment(10, done);
