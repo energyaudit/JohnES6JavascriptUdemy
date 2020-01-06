@@ -1,21 +1,60 @@
-
 ///////////////call back
 // add() function is called with arguments a, b 
 // and callback, callback will be executed just  
 // after ending of add() function 
 function add(a, b, callback) {
-   document.write(`The sum of ${a} and ${b} is ${a + b}.` + "<br>");
-   callback();
+    document.write(`The sum of ${a} and ${b} is ${a + b}.` + "<br>");
+    callback();
 }
 
 // disp() function is called just 
 // after the ending of add() function  
 function disp() {
-   document.write('This must be printed after addition' + "<br>");
+    document.write('This must be printed after addition' + "<br>");
 }
 
 // Calling add() function 
 add(5, 6, disp);
+
+//////////////////////////////promise1 
+const p1 = new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
+    setTimeout(() => {
+        resolve('promise1 resolve:AppDividend');
+    }, 1000);
+});
+
+p1.then(values => {
+    console.log(values);
+});
+
+//////////////////////////////promise2 
+var promise = new Promise(function (resolve, reject) {
+    const x = "geeksforgeeks";
+    const y = "geeksforgeeks";
+    const z = "geeksforgeeks1"
+    if (x === y) {
+        resolve();
+    } else {
+        reject();
+    }
+
+    if (x === z) { //this will not execute because resolve already exit {} block
+        resolve();
+    } else {
+        reject();
+    }
+
+});
+
+
+
+promise.
+then(function () {
+    console.log('promise2 resolve:Success, You are a GEEK');
+}).
+catch(function () {
+    console.log('Some error has occured');
+});
 
 /////////////////flat
 var arr1 = [1, 2, [3, 4]];
@@ -37,5 +76,3 @@ var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
 arr4.flat(Infinity);
 // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 console.log(arr4.flat(Infinity));
-
-

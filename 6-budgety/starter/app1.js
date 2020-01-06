@@ -12,8 +12,10 @@
 //       }
 //    }
 //})();
-//
-//
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 ////////////////version2
 //
 //var budgetController=(function(){
@@ -44,6 +46,7 @@
 //    
 //})(budgetController,UIController)
 
+////////////////////////////////////////////////////////////////////////////////
 ////////////////version3
 //var budgetController=(function(){
 //   
@@ -68,7 +71,8 @@
 //
 //})();
 
-////////////////version4
+////////////////////////////////////////////////////////////////////////////////
+////////////////version4:add event listener
 //var budgetController = (function () {
 //
 //})();
@@ -92,8 +96,8 @@
 //})(budgetController, UIController);
 
 
-
-////////////////version5
+////////////////////////////////////////////////////////////////////////////////
+////////////////version5:UI get data and cotroller get inputdata from UI ready for //budge controller
 //var budgetController = (function () {
 //
 //})();
@@ -101,7 +105,7 @@
 //    return {
 //        getInput: function () {
 //            return {
-//                type: document.querySelector('.add__type').value,
+//                type: document.querySelector('.add__type').value,//inc or exp
 //                description: document.querySelector('.add__description').value,
 //                value: document.querySelector('.add__value').value
 //            }
@@ -116,8 +120,10 @@
 //        //1.get filed input data
 //        var input = UICtrl.getInput();
 //        console.log(input);
-//        //2.Add the item
-//
+//        //2.Add the item to budget controller
+//         //3.Add the item to the UI
+//         //4.Calculate the budget
+//         //5.Display the budget on the UI
 //    }
 //    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
 //    document.addEventListener('keypress', function (event) {
@@ -127,7 +133,7 @@
 //    });
 //
 //})(budgetController, UIController);
-////////////////version6
+////////////////version6:make all hard coded web element centralizaed by DOM
 //var budgetController = (function () {
 //
 //})();
@@ -168,7 +174,8 @@
 //
 //})(budgetController, UIController);
 
-//////////////////version7 initializer
+////////////////////////////////////////////////////////////////////////////////
+//////////////////version7 initializer:Put all eventlistener into //    ////setupEventListeners,modules should be functions only not scattered
 //var budgetController = (function () {
 //
 //})();
@@ -196,7 +203,7 @@
 //})();
 ////GLOBAL APP CONTROLLER
 //var controller = (function (budgetCtrl, UICtrl) {
-//    var setupEventListeners = function () {
+//    var setupEventListeners = function () {//private
 //        var DOM = UICtrl.getDOMstrings();
 //        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
 //        document.addEventListener('keypress', function (event) {
@@ -208,7 +215,7 @@
 //    };
 //
 //
-//    var ctrlAddItem = function () {
+//    var ctrlAddItem = function () {//private
 //        //1.get filed input data
 //        var input = UICtrl.getInput();
 //        console.log(input);
@@ -225,21 +232,24 @@
 //    }
 //})(budgetController, UIController);
 //
-//controller.init();
-////////////////version8 Creating Income and Expense Function Constructors
+//controller.init();//only line out of modules so far
+
+
+
+////////////////version6 Creating Income and Expense Function Constructors,data structue choose array to store so many exp and inc
 // var budgetController = (function () {
-//     var Expense = function (id, description, value) { //function constructor first letter capital
+//     var Expense = function (id, description, value) { //function constructor first letter capital,function constructor create lot of objects
 //         this.id = id;
 //         this.description = description;
 //         this.value = value;
 //     };
-//     var Income = function (id, description, value) { //function constructor first letter capital
+//     var Income = function (id, description, value) { //function constructor first letter capital,function constructor create lot of objects
 //         this.id = id;
 //         this.description = description;
 //         this.value = value;
 //     };
 
-//     var data = {
+//     var data = {//put all item into one object is much better scattered vars
 //         allItems: {
 //             exp:[],
 //             inc:[]
@@ -249,7 +259,7 @@
 //             inc:0
 //         }
 //     };
-//     return{
+//     return{//used by modules to add new datainto budgetctrl data structure
 //         addItem:function(type,des,val){
 //             var newItem,ID;
 //             //create new ID 
@@ -330,7 +340,9 @@
 // })(budgetController, UIController);
 
 // controller.init();
-////////////////version8 Adding a New Item to Our Budget Controller
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////version7 Adding a New Item to Our Budget Controller
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
 //        this.id = id;
@@ -458,7 +470,9 @@
 //})(budgetController, UIController);
 //
 //controller.init();
-////////////////version9  Clear the input fields in the UI
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////version8  Clear the input fields in the UI
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
 //        this.id = id;
@@ -549,7 +563,7 @@
 //            var fields, filedsArr;
 //            fields = document.querySelectorAll(DOMstrings.inputDescription + ',' + DOMstrings.inputValue); //list not have those methods,so change list into array
 //            var fieldsArr = Array.prototype.slice.call(fields);
-//            fieldsArr.forEach(function (current, index, array) {
+//            fieldsArr.forEach(function (current, index, array) {//call back function
 //                current.value = "";
 //            });
 //            fieldsArr[0].focus();
@@ -597,6 +611,8 @@
 //})(budgetController, UIController);
 //
 //controller.init();
+
+////////////////////////////////////////////////////////////////////////////////
 //////////////////version9 Verfiy the UI not input empty description or value
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
@@ -926,6 +942,9 @@
 //})(budgetController, UIController);
 //
 //controller.init();
+
+
+////////////////////////////////////////////////////////////////////////////////
 //////////////////version9 display total income and expenses to the UI
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
@@ -1086,7 +1105,7 @@
 //        });
 //
 //    };
-//    var updateBudget = function () {
+//    var updateBudget = function () {//found these functions repeat,so dry it
 //        //1.Calculate the budget
 //        budgetCtrl.calculateBudget();
 //        //2.retun the budget
@@ -1123,6 +1142,7 @@
 //
 //controller.init();
 
+////////////////////////////////////////////////////////////////////////////////
 //////////////////version9 display total income and expenses to the UI,improve if percentage >0 then add percentage sign or not display sth else
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
@@ -1331,7 +1351,12 @@
 //})(budgetController, UIController);
 //
 //controller.init();
-//////////////////version11 add delte event,and check by budgetController.testing()
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//////////////////version10 add delte event,and check by budgetController.testing()
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
 //        this.id = id;
@@ -1343,7 +1368,7 @@
 //        this.description = description;
 //        this.value = value;
 //    };
-//    var calculateTotal = function (type) {
+//    var calculateTotal = function (type) {//private functiion only budgetCtrl use it so no need in return for public
 //        var sum = 0;
 //        data.allItems[type].forEach(function (cur) {
 //            //  sum=sum+cur.value;
@@ -1361,7 +1386,7 @@
 //            exp: 0,
 //            inc: 0
 //        },
-//        budget: 0,
+//        budget: 0,//add new into data object as needed in coding
 //        percentage: -1 //-1 means something not exisit 
 //    };
 //    return {
@@ -1571,6 +1596,9 @@
 //})(budgetController, UIController);
 //
 //controller.init();
+
+
+////////////////////////////////////////////////////////////////////////////////
 //////////////////version11 add delte event in data structure first,and check by budgetController.testing()
 //var budgetController = (function () {
 //    var Expense = function (id, description, value) { //function constructor first letter capital
