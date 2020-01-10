@@ -1,4 +1,3 @@
-
 var firstName = 'John';
 console.log(firstName);
 
@@ -9,7 +8,7 @@ var fullAge = true;
 console.log(fullAge);
 
 var job;
-console.log(job);
+console.log("declared but not initialize:" + job);
 
 job = 'Teacher';
 console.log(job);
@@ -20,20 +19,21 @@ var johnMark = 'John and MArk';
 //var if = 23;
 
 /*****************************
-* Variable mutation and type coercion
-*/
+ * Variable mutation and type coercion
+ */
 
 var firstName = 'John';
 var age = 28;
 
 // Type corellation
-console.log(firstName + ' ' + age);
+console.log("javascript auto type coercion,exp:number to string to + operator: " + firstName + ' ' + age);
 
 var job, isMarried;
 job = 'teacher';
 isMarried = false;
 
-console.log(firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
+console.log("javascript auto type coercion,exp:boolen to string to + operator,java not have this type auto coerction: " +
+    firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
 
 // Variable mutation
 age = 'twenty eight';
@@ -43,7 +43,7 @@ job = 'driver';
 //
 //var lastName = prompt('What is his last Name?');
 //console.log(firstName + ' ' + lastName);
-
+//console is better than alert that alert you have to click ok to make it go, or not won't execute followed code.
 ///*****************************
 //* Basic operators
 
@@ -70,18 +70,18 @@ console.log(johnOlder);
 
 
 // typeof operator
-console.log(typeof johnOlder);
-console.log(typeof ageJohn);
-console.log(typeof 'Mark is older tha John');
+console.log("typeof operator: " + typeof johnOlder);
+console.log("typeof operator: " + typeof ageJohn);
+console.log("typeof operator: " + typeof 'Mark is older tha John');
 var x;
-console.log(typeof x);
+console.log("typeof operator: " + typeof x);
 
 
 
 
 /*****************************
-* Operator precedence
-*/
+ * Operator precedence
+ */
 
 var now = 2018;
 var yearJohn = 1989;
@@ -89,7 +89,7 @@ var fullAge = 18;
 
 // Multiple operators
 var isFullAge = now - yearJohn >= fullAge; // true
-console.log(isFullAge);
+console.log("+,- operator precedence higher than  logic operator:  " + isFullAge);
 
 // Grouping
 var ageJohn = now - yearJohn;
@@ -115,8 +115,8 @@ console.log(x);
 
 
 /*****************************
-* CODING CHALLENGE 1
-*/
+ * CODING CHALLENGE 1
+ */
 
 
 //Mark and John are trying to compare their BMI (Body Mass Index), which is calculated using the formula: BMI = mass / height^2 = mass / (height * height). (mass in kg and height in meter).
@@ -150,17 +150,18 @@ var firstName = 'John';
 var civilStatus = 'single';
 
 if (civilStatus === 'married') {
-    console.log(firstName + ' is married!');
+    console.log("if else exp: " + firstName + ' is married!');
 } else {
-    console.log(firstName + ' will hopefully marry soon :)');
+    console.log("if else exp: " +
+        firstName + ' will hopefully marry soon :)');
 }
 
 
 var isMarried = true;
 if (isMarried) {
-    console.log(firstName + ' is married!');
+    console.log("if by boolen variable directly ,if (isMarried): " + firstName + ' is married!');
 } else {
-    console.log(firstName + ' will hopefully marry soon :)');
+    console.log("if by boolen variable directly ,if (isMarried): " + firstName + ' will hopefully marry soon :)');
 }
 
 var massMark = 78; // kg
@@ -182,8 +183,8 @@ if (BMIMark > BMIJohn) {
 
 
 /*****************************
-* Boolean logic
-*/
+ * Boolean logic
+ */
 
 var firstName = 'John';
 var age = 20;
@@ -211,12 +212,12 @@ var age = 14;
 age >= 18 ? console.log(firstName + ' drinks beer.') : console.log(firstName + ' drinks juice.');
 
 var drink = age >= 18 ? 'beer' : 'juice';
-console.log(drink);
+console.log("logic operator precedence higher than assignment than Ternary: " + drink);
 
 if (age >= 18) {
     var drink = 'beer';
 } else {
-    var drink = 'juice';
+    var drink = "Ternary is same function as if else but shorter: " + 'juice';
 }
 
 // Switch statement
@@ -224,7 +225,7 @@ var job = 'instructor';
 switch (job) {
     case 'teacher':
     case 'instructor':
-        console.log(firstName + ' teaches kids how to code.');
+        console.log("switch (job),and use break to exit, ornot will keep try other braches : " + firstName + ' teaches kids how to code.');
         break;
     case 'driver':
         console.log(firstName + ' drives an uber in Lisbon.');
@@ -248,31 +249,31 @@ switch (true) {
         console.log(firstName + ' is a young man.');
         break;
     default:
-        console.log(firstName + ' is a man.');
+        console.log("switch (true) is the trick of execute all cases of ranges in switch : " + firstName + ' is a man.');
 }
 
 
 
 
 /*****************************
-* Truthy and Falsy values and equality operators
-*/
+ * Truthy and Falsy values and equality operators
+ */
 
 // falsy values: undefined, null, 0, '', NaN
 // truthy values: NOT falsy values
 
 var height;
 
-//height ='';
-//
-//if (height || height === 0) {
-//    console.log('Variable is defined');
-//} else {
-//    console.log('Variable has NOT been defined');
-//}
+height = '';
+
+if (height || height === 0) {
+    console.log('Variable is defined');
+} else {
+    console.log("falsy values: undefined, null, 0, '', NaN :if (height || height === 0) " + firstName + 'Variable has NOT been defined');
+}
 
 // Equality operators
-height =23;
+height = 23;
 if (height == '23') {
     console.log('The == operator does type coercion!');
 }
@@ -332,19 +333,19 @@ function calculateAge(birthYear) {
 var ageJohn = calculateAge(1990);
 var ageMike = calculateAge(1948);
 var ageJane = calculateAge(1969);
-console.log(ageJohn, ageMike, ageJane);
+console.log("function with one para and use ',' seperate different items in console log: " + ageJohn, ageMike, ageJane);
 
 
 function yearsUntilRetirement(year, firstName) {
     var age = calculateAge(year);
     var retirement = 65 - age;
-    
+
     if (retirement > 0) {
         console.log(firstName + ' retires in ' + retirement + ' years.');
     } else {
         console.log(firstName + ' is already retired.')
     }
-    
+
 }
 
 yearsUntilRetirement(1990, 'John');
@@ -358,11 +359,11 @@ yearsUntilRetirement(1969, 'Jane');
 
 
 // Function declaration
- function whatDoYouDo(job, firstName) {}
+function whatDoYouDo(job, firstName) {}
 
 // Function expression
-var whatDoYouDo = function(job, firstName) {
-    switch(job) {
+var whatDoYouDo = function (job, firstName) {
+    switch (job) {
         case 'teacher':
             return firstName + ' teaches kids how to code';
         case 'driver':
@@ -374,7 +375,7 @@ var whatDoYouDo = function(job, firstName) {
     }
 }
 
-console.log(whatDoYouDo('teacher', 'John'));
+console.log("function expression with 2 para: " + whatDoYouDo('teacher', 'John'));
 console.log(whatDoYouDo('designer', 'Jane'));
 console.log(whatDoYouDo('retired', 'Mark'));
 
@@ -385,31 +386,32 @@ console.log(whatDoYouDo('retired', 'Mark'));
 var names = ['John', 'Mark', 'Jane'];
 var years = new Array(1990, 1969, 1948);
 
-console.log(names[2]);
-console.log(names.length);
+console.log("array index begin from 0,names[2]:  " + names[2]);
+console.log("array size,names.length:  " + names.length);
 
 // Mutate array data
 names[1] = 'Ben';
 names[names.length] = 'Mary';
-console.log(names);
+console.log("Mutate array data,exp last,names[names.length]:reassign array element:  " + names);
 
 // Different data types
 var john = ['John', 'Smith', 1990, 'designer', false];
 
-john.push('blue');
-john.unshift('Mr.');
-console.log(john);
+john.push('blue'); //array push add at end
+john.unshift('Mr.'); //array unshift add at beginning
+console.log("javascript array can have Different data types,array push add at end,array unshift add at beginning :  " +
+    john);
 
 john.pop();
 john.pop();
 john.shift();
 console.log(john);
 
-console.log(john.indexOf(1990));
-console.log(john.indexOf(23));
+console.log(" array john.indexOf(1990)  :  " + john.indexOf(1990));
+console.log(" array element not in array index return -1 :john.indexOf(23)  " + john.indexOf(23));
 
 var isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'John IS a designer';
-console.log(isDesigner);
+console.log("array indexof judge if element inside then ternary:  " + isDesigner);
 
 
 
@@ -450,7 +452,7 @@ var finalValues = [bills[0] + tips[0],
                    bills[1] + tips[1],
                    bills[2] + tips[2]];
 
-console.log(tips, finalValues);
+console.log("pass array element as function para,tipCalculator(bills[0]),combined 2 arrays-bills[0] + tips[0]:if console log not want + operator to join then use ','to seperate them  ", tips, finalValues);
 
 
 //* Objects and properties
@@ -465,21 +467,21 @@ var john = {
     isMarried: false
 };
 
-console.log(john.firstName);
-console.log(john['lastName']);
+console.log("Object literal-john.firstName: ", john.firstName);
+console.log("Object literal-john['lastName']: ", john['lastName']);
 var x = 'birthYear';
-console.log(john[x]);
+console.log("Object literal-john[x]: ", john[x]);
 
 john.job = 'designer';
 john['isMarried'] = true;
-console.log(john);
+console.log("mutate Object properties,john.job,john['isMarried']: ", john);
 
 // new Object syntax
 var jane = new Object();
 jane.firstName = 'Jane';
 jane.birthYear = 1969;
 jane['lastName'] = 'Smith';
-console.log(jane);
+console.log("new Object syntax: ", jane);
 
 //* Objects and methods
 
@@ -490,13 +492,13 @@ var john = {
     family: ['Jane', 'Mark', 'Bob', 'Emily'],
     job: 'teacher',
     isMarried: false,
-    calcAge: function() {
+    calcAge: function () {
         this.age = 2018 - this.birthYear;
-    }
+    } //function expression here 
 };
 
 john.calcAge();
-console.log(john);
+console.log("Object method-function expression, this.age = 2018 - this.birthYear;method add a property:key and value : ", john);
 
 //* CODING CHALLENGE 4
 
@@ -513,7 +515,7 @@ var john = {
     fullName: 'John Smith',
     mass: 110,
     height: 1.95,
-    calcBMI: function() {
+    calcBMI: function () {
         this.bmi = this.mass / (this.height * this.height);
         return this.bmi;
     }
@@ -523,14 +525,14 @@ var mark = {
     fullName: 'Mark Miller',
     mass: 78,
     height: 1.69,
-    calcBMI: function() {
+    calcBMI: function () {
         this.bmi = this.mass / (this.height * this.height);
         return this.bmi;
     }
 }
 
 if (john.calcBMI() > mark.calcBMI()) {
-    console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
+    console.log("john.calcBMI() > mark.calcBMI():obj call method as logic > operator para ", john.fullName + ' has a higher BMI of ' + john.bmi);
 } else if (mark.bmi > john.bmi) {
     console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
 } else {
@@ -548,7 +550,9 @@ for (var i = 1; i <= 20; i += 2) {
     console.log(i);
 }
 
-for(var i=0;i<10;i++){console.log(i)};
+for (var i = 0; i < 10; i++) {
+    console.log(i)
+};
 // i = 0, 0 < 10 true, log i to console, i++
 // i = 1, 1 < 10 true, log i to the console, i++
 //...
@@ -563,7 +567,7 @@ for (var i = 0; i < john.length; i++) {
 
 // While loop
 var i = 0;
-while(i < john.length) {
+while (i < john.length) {
     console.log(john[i]);
     i++;
 }
@@ -583,7 +587,7 @@ for (var i = 0; i < john.length; i++) {
 
 // Looping backwards
 for (var i = john.length - 1; i >= 0; i--) {
-    console.log(john[i]);
+    console.log("array Looping backwards begin from john.length - 1 ", john[i]);
 }
 
 //* CODING CHALLENGE 5
@@ -613,15 +617,15 @@ for (var i = john.length - 1; i >= 0; i--) {
 var john = {
     fullName: 'John Smith',
     bills: [124, 48, 268, 180, 42],
-    calcTips: function() {
+    calcTips: function () {
         this.tips = [];
         this.finalValues = [];
-                
+
         for (var i = 0; i < this.bills.length; i++) {
             // Determine percentage based on tipping rules
             var percentage;
             var bill = this.bills[i];
-            
+
             if (bill < 50) {
                 percentage = .2;
             } else if (bill >= 50 && bill < 200) {
@@ -629,7 +633,7 @@ var john = {
             } else {
                 percentage = .1;
             }
-            
+
             // Add results to the corresponing arrays
             this.tips[i] = bill * percentage;
             this.finalValues[i] = bill + bill * percentage;
@@ -640,15 +644,15 @@ var john = {
 var mark = {
     fullName: 'Mark Miller',
     bills: [77, 475, 110, 45],
-    calcTips: function() {
+    calcTips: function () {
         this.tips = [];
         this.finalValues = [];
-                
+
         for (var i = 0; i < this.bills.length; i++) {
             // Determine percentage based on tipping rules
             var percentage;
             var bill = this.bills[i];
-            
+
             if (bill < 100) {
                 percentage = .2;
             } else if (bill >= 100 && bill < 300) {
@@ -656,7 +660,7 @@ var mark = {
             } else {
                 percentage = .25;
             }
-            
+
             // Add results to the corresponing arrays
             this.tips[i] = bill * percentage;
             this.finalValues[i] = bill + bill * percentage;
@@ -685,4 +689,3 @@ if (john.average > mark.average) {
 } else if (mark.average > john.average) {
     console.log(mark.fullName + '\'s family pays higher tips, with an average of $' + mark.average);
 }
-

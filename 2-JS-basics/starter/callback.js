@@ -16,6 +16,18 @@ function disp() {
 // Calling add() function 
 add(5, 6, disp);
 
+//////////////////////////////defined the callback function directly when call it
+function doHomework(subject, callback) {
+    console.log(`Starting my ${subject} homework.`);
+    callback();
+}
+
+doHomework('math', function () {
+    console.log('Finished my homework');
+});
+
+
+
 //////////////////////////////promise1 
 const p1 = new Promise((resolve, reject) => { // eslint-disable-line no-unused-vars
     setTimeout(() => {
