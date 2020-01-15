@@ -278,3 +278,179 @@ function calcAgeRetirement(year) {
 const [age2, retirement] = calcAgeRetirement(1990);
 console.log("Destructuring function returned array:age:" + age2);
 console.log("Destructuring function returned array retriement:" + retirement);
+/////////////////////////////////
+// Lecture: Arrays
+
+
+const boxes = document.querySelectorAll('.box');
+
+//ES5
+var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function (cur) {
+    cur.style.backgroundColor = 'dodgerblue';
+});
+
+//ES6
+const boxesArr6 = Array.from(boxes);
+Array.from(boxes).forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+
+//ES5
+for (var ii = 0; ii < boxesArr5.length; ii++) {
+
+    if (boxesArr5[ii].className === 'box blue') {
+        continue;
+        //break//will stop and not execute next line
+    }
+
+    boxesArr5[ii].textContent = 'I changed to blue!';
+
+}
+
+
+//ES6
+for (const cur of boxesArr6) {
+    if (cur.className.includes('blue')) {
+        continue;
+    }
+    cur.textContent = 'I changed to blue!';
+}
+
+
+
+
+//ES5
+var ages = [12, 17, 8, 21, 14, 11];
+
+var full = ages.map(function (cur) {
+    return cur >= 18;
+});
+console.log(">=18 returned array:age:", full);
+
+console.log("index of value true: ", full.indexOf(true));
+console.log("array element of value true: ", ages[full.indexOf(true)]);
+
+
+//ES6
+console.log("index of value true: ", ages.findIndex(cur => cur >= 18));
+console.log("array element of value true: ", ages.find(cur => cur >= 18));
+
+
+
+
+
+/////////////////////////////////
+// Lecture: Spread operator
+
+
+function addFourAges(a, b, c, d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
+//ES5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log("array apply method: ", sum2);
+
+//ES6
+const sum3 = addFourAges(...ages);
+console.log("ES6 array Spread operator: ", sum3);
+
+
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+const bigFamily = [...familySmith, 'Lily', ...familyMiller];
+console.log("ES6 array Spread operator: ", bigFamily);
+
+
+const h = document.querySelector('h1');
+const boxess = document.querySelectorAll('.box'); //nodelis because querySelectorAll
+const all = [h, ...boxess];
+
+Array.from(all).forEach(cur => cur.style.color = 'purple');
+
+// Lecture: Rest parameters
+
+
+//ES5
+function isFullAge5() {
+    console.log("console.log(arguments):looks like array but not,so need use slice ", arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
+
+    argsArr.forEach(function (cur) {
+        console.log("calculate if age is fullage:>=18 ", (2016 - cur) >= 18);
+    })
+}
+
+
+isFullAge5(1990, 1999, 1965);
+isFullAge5(1990, 1999, 1965, 2016, 1987);
+
+
+//ES6
+function isFullAge6(...years) {
+    console.log("...years will change paras into array already", years);
+    years.forEach(cur => console.log((2016 - cur) >= 18));
+}
+
+isFullAge6("...years: Rest parameters:       ", 1990, 1999, 1965, 2016, 1987);
+
+
+//ES5
+
+function isFullAge55(limit) { //limit is arguments/paras of fullage
+    var argsArr = Array.prototype.slice.call(arguments, 1); //slice after first element
+    console.log("Array.prototype.slice.call(arguments, 1);//slice after first element:   ", argsArr);
+    argsArr.forEach(function (cur) {
+        console.log((2016 - cur) >= limit);
+    })
+}
+
+
+//isFullAge5(16, 1990, 1999, 1965);
+isFullAge55(1990, 1999, 1965, 2016, 1987);
+
+
+//ES6
+function isFullAge66(limit, ...years) {
+    console.log("ES6 will read para  years after first para smartly ", years);
+    years.forEach(cur => console.log((2016 - cur) >= limit));
+}
+
+isFullAge66(16, 1990, 1999, 1965, 2016, 1987);
+/////////////////////////////////
+// Lecture: Default parameters
+
+
+// ES5
+function SmithPerson5(firstName, yearOfBirth, lastName, nationality) {
+
+    lastName === undefined ? lastName = 'Smith' : lastName = lastName;
+    nationality === undefined ? nationality = 'american' : nationality = nationality;
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+var john = new SmithPerson5('John', 1990);
+console.log("ES5 default para john:   ", john);
+var emily = new SmithPerson5('Emily', 1983, 'Diaz', 'spanish');
+console.log("ES5 default para emily:   ", emily);
+
+//ES6
+function SmithPerson6(firstName, yearOfBirth, lastName = 'Smith', nationality = 'american') {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.yearOfBirth = yearOfBirth;
+    this.nationality = nationality;
+}
+
+
+var john = new SmithPerson6('John', 1990);
+console.log("ES6 default para john:  ", john);
+var emily = new SmithPerson6('Emily', 1983, 'Diaz', 'spanish');
+console.log("ES6 default para emily:   ", emily);
