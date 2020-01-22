@@ -4,8 +4,7 @@
   "description": "forkifystarter project",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "dev": "webpack"
   },
   "author": "billy yang",
   "license": "ISC",
