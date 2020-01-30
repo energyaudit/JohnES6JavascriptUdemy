@@ -1,14 +1,14 @@
 // Global app controller
 
-//////////////////////////////////////versin1
+//////////////////////////////////////version1
 //  import str from './models/Search';
 // import {add,multiply,ID} from './views/searchView';
 // console.log(`${add(ID,2)}and ${multiply(3,5)}. ${str}`);
-//////////////////////////////////////versin2
+//////////////////////////////////////version2
 //  import str from './models/Search';
 // import {add as a,multiply as m,ID} from './views/searchView';
 // console.log(`${a(ID,2)}and ${m(3,5)}. ${str}`);
-//////////////////////////////////////versin3
+//////////////////////////////////////version3
 //  import str from './models/Search';
 // import * as searchView from './views/searchView';
 // console.log(`${searchView.add(searchView.ID,2)}and ${searchView.multiply(3,5)}. ${str}`);
@@ -28,7 +28,7 @@
 // console.log(recipes);
 // }
 // getResults("pizza");
-// //////////////////////////////////////versin4,api works then add error handing of 403 etc
+// //////////////////////////////////////version4,api works then add error handing of 403 etc
 // import axios from "axios";
 
 // async function getResults(query) {
@@ -46,7 +46,7 @@
 // getResults("pizza");
 // getResults("sweet potato");
 // getResults('tomato pasta');
-// //////////////////////////////////////versin5,Building the Search Model
+// //////////////////////////////////////version5,Building the Search Model
 // import axios from "axios";
 // async function getResults(query) {
 //   try {
@@ -62,14 +62,14 @@
 // }
 // getResults("pizza");
 // getResults('sweet potato');
-// //////////////////////////////////////versin5,Building the Search Model,move function into class method then import
+// //////////////////////////////////////version6,Building the Search Model,move function into class method then import
 
 // import Search from "./models/Search";
 // const search = new Search("pizza");
 // console.log(search);
 // search.getResults();
 
-// //////////////////////////////////////versin6,Building the Search Model,add event listener and put all states in place
+// //////////////////////////////////////version7,Building the Search Model,add event listener and put all states in place
 
 // import Search from "./models/Search";
 // /** Global state of the app
@@ -103,33 +103,111 @@
 // //const search = new Search("pizza");delete and move into contrl Search:New search object and add to state
 // //console.log(search);
 // //search.getResults();//movie into controlSearch=()
-//////////////////////////////////////versin6,Building the Search Model,add event listener and put all states in place
+// //////////////////////////////////////versin8,Building the Search Model,display result at webpage
 
+// import Search from "./models/Search";
+// import * as searchView from "./views/searchView";
+// import { elements } from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  * - put all states in one place to easy remember and control
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+// const state = {};
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+
+// //////////////////////////////////////versin9,Building the Search Model,display result at webpage
+// /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import * as searchView from "./views/searchView";
+// import { elements } from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+// const state = {};
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+// //////////////////////////////////////versin9,Building the Search Model,display result at webpage
+// /////////////////////////////index.js is controller
 import Search from "./models/Search";
+import * as searchView from "./views/searchView";
+import { elements } from "./views/base"; //use {elements} curly brace
+
 /** Global state of the app
  * - Search object
  * - Current recipe object
  * - Shopping list object
  * - Liked recipes
- * - put all states in one place to easy remember and control
  */
 const controlSearch = async () => {
   //1) get query from view
-  const query = "pizza"; //
+  const query = searchView.getInput(); //
 
   if (query) {
     // 2)New search object and add to state
-    state.Search = new Search(query);
-    //3)prepare UIfor results
-
+    state.search = new Search(query);
+    console.log(query);
+    //3)prepare UI for results
+    searchView.clearInput();
+    searchView.clearResults();
     //4)search for receipes
-    await state.Search.getResults();
+    await state.search.getResults();
     //5)render result onUI
-    console.log(state.Search.recipes);
+    //console.log(state.Search.result);
+    searchView.renderResults(state.search.result);
   }
 };
 const state = {};
-document.querySelector(".search").addEventListener("submit", e => {
+elements.searchForm.addEventListener("submit", e => {
   e.preventDefault(); //prevent empty reload
   controlSearch();
 });
+
+
