@@ -174,17 +174,144 @@
 //   e.preventDefault(); //prevent empty reload
 //   controlSearch();
 // });
-// //////////////////////////////////////versin9,Building the Search Model,display result at webpage
+// // //////////////////////////////////////versin9,Building the Search Model,display result at webpage
+// // /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import * as searchView from "./views/searchView";
+// import { elements } from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+// const state = {};
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+
+// // //////////////////////////////////////versin10,Rendering an AJAX Loading Spinner
+// // /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import * as searchView from "./views/searchView";
+// import { elements, renderLoader, clearLoader} from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     renderLoader(elements.searchRes);
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     clearLoader();
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+// const state = {};
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+// // //////////////////////////////////////versin11, Implementing Search Results Pagination
+// // /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import * as searchView from "./views/searchView";
+// import { elements, renderLoader, clearLoader} from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     renderLoader(elements.searchRes);
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     clearLoader();
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+// const state = {};
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+// elements.searchResPages.addEventListener("click", e => {
+//   const btn=e.target.closest('.btn-inline');
+//   console.log(btn);
+//   if (btn){
+//     const goToPage=parseInt(btn.dataset.goto,10);
+//     searchView.clearResults();
+//     searchView.renderResults(state.search.result,goToPage);
+//     console.log(goToPage);
+//   }
+
+// });
+
+// //////////////////////////////////////versin12, Building the Recipe Model - Part 1
 // /////////////////////////////index.js is controller
 import Search from "./models/Search";
+import Recipe from "./models/Recipe";
 import * as searchView from "./views/searchView";
-import { elements } from "./views/base"; //use {elements} curly brace
+import { elements, renderLoader, clearLoader} from "./views/base"; //use {elements} curly brace
 
 /** Global state of the app
  * - Search object
  * - Current recipe object
  * - Shopping list object
  * - Liked recipes
+ */
+const state = {};
+/**
+ * SEARCH CONTROLLER
  */
 const controlSearch = async () => {
   //1) get query from view
@@ -197,17 +324,35 @@ const controlSearch = async () => {
     //3)prepare UI for results
     searchView.clearInput();
     searchView.clearResults();
+    renderLoader(elements.searchRes);
     //4)search for receipes
     await state.search.getResults();
     //5)render result onUI
     //console.log(state.Search.result);
+    clearLoader();
     searchView.renderResults(state.search.result);
   }
 };
-const state = {};
+
 elements.searchForm.addEventListener("submit", e => {
   e.preventDefault(); //prevent empty reload
   controlSearch();
 });
+elements.searchResPages.addEventListener("click", e => {
+  const btn=e.target.closest('.btn-inline');
+  console.log(btn);
+  if (btn){
+    const goToPage=parseInt(btn.dataset.goto,10);
+    searchView.clearResults();
+    searchView.renderResults(state.search.result,goToPage);
+    console.log(goToPage);
+  }
 
+});
 
+/** 
+ * RECIPE CONTROLLER
+*/
+const r=new Recipe(35626);
+r.getRecipe();
+console.log(r);//console whole object
