@@ -296,12 +296,173 @@
 
 // });
 
-// //////////////////////////////////////versin12, Building the Recipe Model - Part 1
+// // //////////////////////////////////////versin11, Building the Recipe Model - Part 1
+// // /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import Recipe from "./models/Recipe";
+// import * as searchView from "./views/searchView";
+// import { elements, renderLoader, clearLoader} from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const state = {};
+// /**
+//  * SEARCH CONTROLLER
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); //
+
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     renderLoader(elements.searchRes);
+//     //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     clearLoader();
+//     searchView.renderResults(state.search.result);
+//   }
+// };
+
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+// elements.searchResPages.addEventListener("click", e => {
+//   const btn=e.target.closest('.btn-inline');
+//   console.log(btn);
+//   if (btn){
+//     const goToPage=parseInt(btn.dataset.goto,10);
+//     searchView.clearResults();
+//     searchView.renderResults(state.search.result,goToPage);
+//     console.log(goToPage);
+//   }
+
+// });
+
+// /**
+//  * RECIPE CONTROLLER
+// */
+// const r=new Recipe(35626);
+// r.getRecipe();
+// console.log(r);//console whole object
+
+// // //////////////////////////////////////versin12, Building the Recipe Model - Part  2
+// // /////////////////////////////index.js is controller
+// import Search from "./models/Search";
+// import Recipe from "./models/Recipe";
+// import * as searchView from "./views/searchView";
+// import { elements, renderLoader, clearLoader } from "./views/base"; //use {elements} curly brace
+
+// /** Global state of the app
+//  * - Search object
+//  * - Current recipe object
+//  * - Shopping list object
+//  * - Liked recipes
+//  */
+// const state = {};
+// /**
+//  * SEARCH CONTROLLER
+//  */
+// const controlSearch = async () => {
+//   //1) get query from view
+//   const query = searchView.getInput(); 
+//   // const query = 'pizza';//no need to input,search pizza automatically
+//   if (query) {
+//     // 2)New search object and add to state
+//     state.search = new Search(query);
+//     console.log(query);
+//     //3)prepare UI for results
+//     searchView.clearInput();
+//     searchView.clearResults();
+//     renderLoader(elements.searchRes);
+//     try {
+//          //4)search for receipes
+//     await state.search.getResults();
+//     //5)render result onUI
+//     //console.log(state.Search.result);
+//     clearLoader();
+//     searchView.renderResults(state.search.result);
+//     } catch (err) {
+//       alert(err.message);
+//     }
+ 
+//   }
+// };
+
+// elements.searchForm.addEventListener("submit", e => {
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
+// // //TESTING
+// // window.addEventListener('load',e=>{
+// //   e.preventDefault(); //prevent empty reload
+// //   controlSearch();
+// // });
+// elements.searchResPages.addEventListener("click", e => {
+//   const btn = e.target.closest(".btn-inline");
+//   console.log(btn);
+//   if (btn) {
+//     const goToPage = parseInt(btn.dataset.goto, 10);
+//     searchView.clearResults();
+//     searchView.renderResults(state.search.result, goToPage);
+//     console.log(goToPage);
+//   }
+// });
+
+// /**
+//  * RECIPE CONTROLLER
+//  */
+// const controlRecipe = async () => {
+//   //Get ID from url
+//   // const id=window.location.hash;//we only interested number no # sign,so use string method replace ''
+//   const id = window.location.hash.replace("#", "");
+//   console.log(id);
+//   if (id) {
+//     //if id is null,we not want evenlistener trigger anything
+//     // Prepare UI for changes
+
+//     //create new recipe objects
+//     state.recipe = new Recipe(id);
+//     //TESTING
+//     window.r=state.recipe;
+//     //get recipe data
+//     try {
+//       await state.recipe.getRecipe();
+//       state.recipe.parseIngredients();
+//       //calculate servings and time
+//       state.recipe.calcTime();
+//       state.recipe.calcServings();
+//       //render recipe
+//       console.log(state.recipe);
+//     } catch (err) {
+//       console.log(err);
+//     }
+ 
+//   }
+// };
+// // window.addEventListener('hashchange',controlRecipe);//event listener added to gloabl object
+// // window.addEventListener('load',controlRecipe);//if user bookmark and reload,recipe must show too.
+// ["hashchange", "load"].forEach(event =>
+//   window.addEventListener(event, controlRecipe)
+// );
+// //////////////////////////////////////versin13,  Building the Recipe View - Part 1
 // /////////////////////////////index.js is controller
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import * as searchView from "./views/searchView";
-import { elements, renderLoader, clearLoader} from "./views/base"; //use {elements} curly brace
+import * as recipeView from "./views/recipeView";
+import { elements, renderLoader, clearLoader } from "./views/base"; //use {elements} curly brace
 
 /** Global state of the app
  * - Search object
@@ -315,8 +476,8 @@ const state = {};
  */
 const controlSearch = async () => {
   //1) get query from view
-  const query = searchView.getInput(); //
-
+  const query = searchView.getInput(); 
+  // const query = 'pizza';//no need to input,search pizza automatically
   if (query) {
     // 2)New search object and add to state
     state.search = new Search(query);
@@ -325,12 +486,17 @@ const controlSearch = async () => {
     searchView.clearInput();
     searchView.clearResults();
     renderLoader(elements.searchRes);
-    //4)search for receipes
+    try {
+         //4)search for receipes
     await state.search.getResults();
     //5)render result onUI
     //console.log(state.Search.result);
     clearLoader();
     searchView.renderResults(state.search.result);
+    } catch (err) {
+      alert(err.message);
+    }
+ 
   }
 };
 
@@ -338,21 +504,59 @@ elements.searchForm.addEventListener("submit", e => {
   e.preventDefault(); //prevent empty reload
   controlSearch();
 });
+// //TESTING
+// window.addEventListener('load',e=>{
+//   e.preventDefault(); //prevent empty reload
+//   controlSearch();
+// });
 elements.searchResPages.addEventListener("click", e => {
-  const btn=e.target.closest('.btn-inline');
+  const btn = e.target.closest(".btn-inline");
   console.log(btn);
-  if (btn){
-    const goToPage=parseInt(btn.dataset.goto,10);
+  if (btn) {
+    const goToPage = parseInt(btn.dataset.goto, 10);
     searchView.clearResults();
-    searchView.renderResults(state.search.result,goToPage);
+    searchView.renderResults(state.search.result, goToPage);
     console.log(goToPage);
   }
-
 });
 
-/** 
+/**
  * RECIPE CONTROLLER
-*/
-const r=new Recipe(35626);
-r.getRecipe();
-console.log(r);//console whole object
+ */
+const controlRecipe = async () => {
+  //Get ID from url
+  // const id=window.location.hash;//we only interested number no # sign,so use string method replace ''
+  const id = window.location.hash.replace("#", "");
+  console.log(id);
+  if (id) {
+    //if id is null,we not want evenlistener trigger anything
+    // Prepare UI for changes
+    recipeView.clearRecipe();
+renderLoader(elements.recipe);
+
+    //create new recipe objects
+    state.recipe = new Recipe(id);
+    //TESTING
+    window.r=state.recipe;
+    //get recipe data
+    try {
+      await state.recipe.getRecipe();
+      state.recipe.parseIngredients();
+      //calculate servings and time
+      state.recipe.calcTime();
+      state.recipe.calcServings();
+      //render recipe
+      clearLoader();
+      //console.log(state.recipe);//replace with render function
+recipeView.renderRecipe(state.recipe);
+    } catch (err) {
+      console.log(err);
+    }
+ 
+  }
+};
+// window.addEventListener('hashchange',controlRecipe);//event listener added to gloabl object
+// window.addEventListener('load',controlRecipe);//if user bookmark and reload,recipe must show too.
+["hashchange", "load"].forEach(event =>
+  window.addEventListener(event, controlRecipe)
+);
