@@ -785,3 +785,41 @@ var person1 = {
     }
   };
   person1.getFullName();
+////////////////////////////////Object Initialization Short Hand
+  function createuser(firstName, lastName) {
+let fullName=firstName + " " + lastName;
+return {
+  firstName:firstName,
+  lastName:lastName,
+  fullName:fullName
+}
+
+}
+let user=createuser('Dan','Smith');
+console.log(" Object Initialization Short Hand- before : ",user)
+
+function createuser1(firstName, lastName) {
+  let fullName=firstName + " " + lastName;
+  return {
+    firstName,
+    lastName,
+    fullName
+  }
+  
+  }
+  let user1=createuser1('Dan','Smith');
+  console.log(" Object Initialization Short Hand- after: ",user1)
+///////////////////////////////Object Destructuring
+let obj={
+  x:7,y:8,z:9
+};
+let x1=obj.x;
+let y1=obj.y;
+let z1=obj.z;
+console.log("Object Destructuring-befoe",x1,y1,z1);
+
+let obj2={
+  x2:7,y2:8,z2:9
+};
+let {x2,y2,z2}=obj2;//x2 must exact same as x2 in obj,because it is not parameter
+console.log("Object Destructuring-befoe",x2,y2,z2);
