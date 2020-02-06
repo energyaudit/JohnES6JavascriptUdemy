@@ -376,7 +376,7 @@
 //  */
 // const controlSearch = async () => {
 //   //1) get query from view
-//   const query = searchView.getInput(); 
+//   const query = searchView.getInput();
 //   // const query = 'pizza';//no need to input,search pizza automatically
 //   if (query) {
 //     // 2)New search object and add to state
@@ -396,7 +396,7 @@
 //     } catch (err) {
 //       alert(err.message);
 //     }
- 
+
 //   }
 // };
 
@@ -448,7 +448,7 @@
 //     } catch (err) {
 //       console.log(err);
 //     }
- 
+
 //   }
 // };
 // // window.addEventListener('hashchange',controlRecipe);//event listener added to gloabl object
@@ -476,7 +476,7 @@ const state = {};
  */
 const controlSearch = async () => {
   //1) get query from view
-  const query = searchView.getInput(); 
+  const query = searchView.getInput();
   // const query = 'pizza';//no need to input,search pizza automatically
   if (query) {
     // 2)New search object and add to state
@@ -487,16 +487,15 @@ const controlSearch = async () => {
     searchView.clearResults();
     renderLoader(elements.searchRes);
     try {
-         //4)search for receipes
-    await state.search.getResults();
-    //5)render result onUI
-    //console.log(state.Search.result);
-    clearLoader();
-    searchView.renderResults(state.search.result);
+      //4)search for receipes
+      await state.search.getResults();
+      //5)render result onUI
+      //console.log(state.Search.result);
+      clearLoader();
+      searchView.renderResults(state.search.result);
     } catch (err) {
       alert(err.message);
     }
- 
   }
 };
 
@@ -532,12 +531,15 @@ const controlRecipe = async () => {
     //if id is null,we not want evenlistener trigger anything
     // Prepare UI for changes
     recipeView.clearRecipe();
-renderLoader(elements.recipe);
+    renderLoader(elements.recipe);
+
+    // Highlight selected search itemID
+    if(state.search) searchView.highlightSelected(id);//only search sth hightligh, if reload not hight so need if statement
 
     //create new recipe objects
     state.recipe = new Recipe(id);
     //TESTING
-    window.r=state.recipe;
+    window.r = state.recipe;
     //get recipe data
     try {
       await state.recipe.getRecipe();
@@ -548,11 +550,10 @@ renderLoader(elements.recipe);
       //render recipe
       clearLoader();
       //console.log(state.recipe);//replace with render function
-recipeView.renderRecipe(state.recipe);
+      recipeView.renderRecipe(state.recipe);
     } catch (err) {
       console.log(err);
     }
- 
   }
 };
 // window.addEventListener('hashchange',controlRecipe);//event listener added to gloabl object

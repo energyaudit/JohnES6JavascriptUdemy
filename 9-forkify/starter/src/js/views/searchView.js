@@ -335,8 +335,11 @@ export const clearResults = () => {
   elements.searchResList.innerHTML = "";
   elements.searchResPages.innerHTML="";//clear the page buttons
 };
-export const highlightSelected= id => {
-document.querySelector('a[href=#${id}]').classList.add('.results__link--active');
+export const highlightSelected = id => {
+//document.querySelector(`a[href="#${id}"]`).classList.add('.results__link--active');//add . infront of class will error in add classlist
+const resultsArray =Array.from(document.querySelectorAll('.results__link'));//querySelectorAll must have the . infront of class results__link ornot not work 
+resultsArray.forEach(el=>{el.classList.remove('results__link--active');});
+document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');//use atrribute has #id link to identify the cliecked search
 };
 /*
 // 'Pasta with tomato and spinach'
