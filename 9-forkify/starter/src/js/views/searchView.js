@@ -416,3 +416,4 @@ export const renderResults = (recipes, page = 2, resPerPage = 10) => {
   renderButtons(page, recipes.length, resPerPage);
 };
 
+
