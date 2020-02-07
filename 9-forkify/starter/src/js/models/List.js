@@ -1,8 +1,8 @@
 import uniqid from 'uniqid';
 
-export default class List {//this is a api
+export default class List {//this is a api,create list as object
     constructor() {
-        this.items = [];
+        this.items = [];//empty array
     }
 
     addItem(count, unit, ingredient) {
@@ -20,10 +20,13 @@ export default class List {//this is a api
         const index = this.items.findIndex(el => el.id === id);
         // [2,4,8] splice(1, 2) -> returns [4, 8], original array is [2]
         // [2,4,8] slice(1, 2) -> returns 4, original array is [2,4,8]
-        this.items.splice(index, 1);
+        this.items.splice(index, 1);//remove one item
     }
 
     updateCount(id, newCount) {
+        console.log("update  item", this.items);
+        console.log("update  item id ", id);
+        console.log("update count item", this.items.find(el => el.id === id));
         this.items.find(el => el.id === id).count = newCount;
     }
 }
