@@ -1,4 +1,4 @@
-export default class Like {
+export default class Likes {
    constructor() {
        this.likes=[];
    }
@@ -14,7 +14,7 @@ export default class Like {
     this.likes.splice(index, 1);//remove one item
    }
 isLiked(id){
-    return this.likes.findIndex(el => el.id === id)!==-1;
+    return this.likes.findIndex(el => el.id === id)!==-1;//if -1 mean not inside
 }
 getNumLikes(){
     return this.likes.length;

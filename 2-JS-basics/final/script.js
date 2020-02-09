@@ -775,51 +775,91 @@ var person = {
 person.getFullName();
 
 var person1 = {
-    firstName: "John",
-    lastName: "Smith",
-    getFullName: function() {
-      var name = function() {
-        console.log(this.firstName + " " + this.lastName);
-      }.bind(this);
-      return name();
-    }
-  };
-  person1.getFullName();
+  firstName: "John",
+  lastName: "Smith",
+  getFullName: function() {
+    var name = function() {
+      console.log(this.firstName + " " + this.lastName);
+    }.bind(this);
+    return name();
+  }
+};
+person1.getFullName();
 ////////////////////////////////Object Initialization Short Hand
-  function createuser(firstName, lastName) {
-let fullName=firstName + " " + lastName;
-return {
-  firstName:firstName,
-  lastName:lastName,
-  fullName:fullName
+function createuser(firstName, lastName) {
+  let fullName = firstName + " " + lastName;
+  return {
+    firstName: firstName,
+    lastName: lastName,
+    fullName: fullName
+  };
 }
-
-}
-let user=createuser('Dan','Smith');
-console.log(" Object Initialization Short Hand- before : ",user)
+let user = createuser("Dan", "Smith");
+console.log(" Object Initialization Short Hand- before : ", user);
 
 function createuser1(firstName, lastName) {
-  let fullName=firstName + " " + lastName;
+  let fullName = firstName + " " + lastName;
   return {
     firstName,
     lastName,
     fullName
-  }
-  
-  }
-  let user1=createuser1('Dan','Smith');
-  console.log(" Object Initialization Short Hand- after: ",user1)
+  };
+}
+let user1 = createuser1("Dan", "Smith");
+console.log(" Object Initialization Short Hand- after: ", user1);
 ///////////////////////////////Object Destructuring
-let obj={
-  x:7,y:8,z:9
+let obj = {
+  x: 7,
+  y: 8,
+  z: 9
 };
-let x1=obj.x;
-let y1=obj.y;
-let z1=obj.z;
-console.log("Object Destructuring-befoe",x1,y1,z1);
+let x1 = obj.x;
+let y1 = obj.y;
+let z1 = obj.z;
+console.log("Object Destructuring-befoe", x1, y1, z1);
 
-let obj2={
-  x2:7,y2:8,z2:9
+let obj2 = {
+  x2: 7,
+  y2: 8,
+  z2: 9
 };
-let {x2,y2,z2}=obj2;//x2 must exact same as x2 in obj,because it is not parameter
-console.log("Object Destructuring-befoe",x2,y2,z2);
+let { x2, y2, z2 } = obj2; //x2 must exact same as x2 in obj,because it is not parameter
+console.log("Object Destructuring-befoe", x2, y2, z2);
+
+///////////////////////////////Object.assign
+let item = {
+  id: 1,
+  content: "ES6",
+  completed: false
+};
+let newItem = Object.assign({}, item, { completed: true });
+console.log("Object.assign", newItem, item);
+let newItem2 = { ...item, completed: "spread" }; //use {} not () because ... has no bracket,just object istself use {}
+console.log("spread same fun as Object.assign", newItem2); //"spread" must quoted by "" that any name not quoted will be variable and lead to undefined error
+/////////////////////////////// array destructuring
+let fruits = ["apple", "banana", "grape"];
+let a1 = fruits[0];
+let b1 = fruits[1];
+let c1 = fruits[2];
+console.log("array destructuring:", a1, b1, c1);
+let [a2, b2, c2] = fruits;
+console.log("array destructuring1:", a2, b2, c2);
+let [a3, , c3] = fruits;
+console.log("array destructuring2:", a3, c3);
+/////////////////////////////// for of loop
+let fruits1 = ["apple", "banana", "grape"];
+for (let i in fruits1) {
+  console.log("for in loop:", fruits1[i]);
+}
+for (let fruit of fruits1) {
+  console.log("for of loop:", fruit);
+}
+/////////////////////////////// array find method
+let services = [
+  { name: "nails", activated: false },
+  { name: "haircut", activated: true },
+  { name: "feet therapy", activated: true }
+];
+//let activateserv = services.find(service => service.activated=true); //find activated=treu and return only first one
+let activateserv = services.find(service => service.activated=true); //
+console.log("array find method", activateserv);

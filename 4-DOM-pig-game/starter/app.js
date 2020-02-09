@@ -1037,7 +1037,7 @@ function init() { //no para need, we just want to do some operations,no need las
 }
 
 
-////////////////////////////////////////Chanllenge1,   1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
+////////////////////////////////////////Coding Challenge Chanllenge1,   1. A player looses his ENTIRE score when he rolls two 6 in a row. After that, it's the next player's turn. (Hint: Always save the previous dice roll in a separate variable)
 //
 ////var scores, roundScore, activePlayer;
 //var scores, roundScore, activePlayer, gamePlaying;

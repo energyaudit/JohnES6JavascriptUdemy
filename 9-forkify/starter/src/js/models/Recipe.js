@@ -503,21 +503,21 @@ export default class Recipe {
       // 3)parse ingredientsinto count,unit and ingredients
       const arrIng = ingredient.split(" "); //split into array by space
       const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
-      console.log("unitIndex", unitIndex);
+    //  console.log("unitIndex", unitIndex);
       let objIng; //declare ingredients object as function final return
       if (unitIndex > -1) {
         // There is a unit
         // Ex. 4 1/2 cups, arrCount is [4, 1/2] --> eval("4+1/2") --> 4.5
         // Ex. 4 cups, arrCount is [4]
         const arrCount = arrIng.slice(0, unitIndex);
-        console.log('arrCount',arrCount);
+      //  console.log('arrCount',arrCount);
         let count;
         if (arrCount.length === 1) {
           count = eval(arrIng[0].replace("-", "+"));
         } else {
           count = eval(arrIng.slice(0, unitIndex).join("+"));
         }
-        console.log('count',count);
+       // console.log('count',count);
         objIng = {
           count,
           unit: arrIng[unitIndex],
