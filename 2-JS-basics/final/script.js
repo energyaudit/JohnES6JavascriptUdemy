@@ -863,3 +863,16 @@ let services = [
 //let activateserv = services.find(service => service.activated=true); //find activated=treu and return only first one
 let activateserv = services.find(service => service.activated=true); //
 console.log("array find method", activateserv);
+
+/////////////////////////////// ES6 map ,key can be object
+let carOne ={make:'Audi'}
+let carTwo ={make:'Ford'}
+let carAge= new Map()
+carAge.set(carOne,3)
+carAge.set(carTwo,5)
+console.log("ES6 map ,key can be object", carAge)
+
+
+
+
+
