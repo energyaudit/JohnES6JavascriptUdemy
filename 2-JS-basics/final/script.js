@@ -872,6 +872,45 @@ carAge.set(carOne,3)
 carAge.set(carTwo,5)
 console.log("ES6 map ,key can be object", carAge)
 
+/////////////////////////////// ES6 map for of loop
+let cars=new Map()//M must capital
+cars.set("carOne","Audit");
+cars.set("carTwo","Ford");
+cars.set("carThree","GM");
+for (let[key, value] of cars){
+  console.log("ES6 map for of loop",`${key}: ${value}`);
+}
+/////////////////////////////// ES6 weakmap 
+let personOne={};//w and m capital,capital map key can only be objects
+let personTwo={};
+let people=new WeakMap();
+people.set(personOne,"David");
+people.set(personTwo,"Aby");
+console.log("ES6 map for of loop: ",people.get(personOne));
+console.log("ES6 map for of loop: ",people.get(personTwo));
+
+/////////////////////////////// ES6 set use add method to insert object
+/////////////////////////// and set destructuring
+let cars2=new Set();
+cars2.add('Audi');
+cars2.add('Ford');
+cars2.add('Mercedes');
+cars2.add('Audi');
+console.log("ES6 set not allowed duplicate 4-1,total number of cars: ",cars2.size);//size no () need,it is property not method
+
+for (let car of cars){
+  console.log("ES6 set for of loop: ",car)
+}
+let[a31,b31,c31]=cars2;
+console.log("set destructuring: ",a31, b31, c31)
+/////////////////////////////// ES6 Weakset use add method to insert object
+let weakCars=new WeakSet();
+
+weakCars.add({driver:"aby"});//object ,so must {} in () for add method 
+let passenger={passenger:"sarah"};
+weakCars.add(passenger);
+console.log("wekset has method: ",weakCars.has(passenger));
+
 
 
 
