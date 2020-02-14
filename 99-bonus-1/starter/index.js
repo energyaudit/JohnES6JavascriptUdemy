@@ -449,8 +449,8 @@ const server = http.createServer((req, res) => {
   console.log("pathName: ", pathName);
   const query = url.parse(req.url, true).query;
   const id = url.parse(req.url, true).query.id;
-  //   console.log("query: ", query);
-  //   console.log("ID: ", id);
+    console.log("query: ", query);
+    console.log("ID: ", id);
   //   console.log("laptopData.length: ", laptopData.length);
   // PRODUCTS OVERVIEW
   if (pathName === "/products" || pathName === "") {

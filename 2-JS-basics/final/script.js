@@ -861,57 +861,165 @@ let services = [
   { name: "feet therapy", activated: true }
 ];
 //let activateserv = services.find(service => service.activated=true); //find activated=treu and return only first one
-let activateserv = services.find(service => service.activated=true); //
+let activateserv = services.find(service => (service.activated = true)); //
 console.log("array find method", activateserv);
 
 /////////////////////////////// ES6 map ,key can be object
-let carOne ={make:'Audi'}
-let carTwo ={make:'Ford'}
-let carAge= new Map()
-carAge.set(carOne,3)
-carAge.set(carTwo,5)
-console.log("ES6 map ,key can be object", carAge)
+let carOne = { make: "Audi" };
+let carTwo = { make: "Ford" };
+let carAge = new Map();
+carAge.set(carOne, 3);
+carAge.set(carTwo, 5);
+console.log("ES6 map ,key can be object", carAge);
 
 /////////////////////////////// ES6 map for of loop
-let cars=new Map()//M must capital
-cars.set("carOne","Audit");
-cars.set("carTwo","Ford");
-cars.set("carThree","GM");
-for (let[key, value] of cars){
-  console.log("ES6 map for of loop",`${key}: ${value}`);
+let cars = new Map(); //M must capital
+cars.set("carOne", "Audit");
+cars.set("carTwo", "Ford");
+cars.set("carThree", "GM");
+for (let [key, value] of cars) {
+  console.log("ES6 map for of loop", `${key}: ${value}`);
 }
-/////////////////////////////// ES6 weakmap 
-let personOne={};//w and m capital,capital map key can only be objects
-let personTwo={};
-let people=new WeakMap();
-people.set(personOne,"David");
-people.set(personTwo,"Aby");
-console.log("ES6 map for of loop: ",people.get(personOne));
-console.log("ES6 map for of loop: ",people.get(personTwo));
+/////////////////////////////// ES6 weakmap
+let personOne = {}; //w and m capital,capital map key can only be objects
+let personTwo = {};
+let people = new WeakMap();
+people.set(personOne, "David");
+people.set(personTwo, "Aby");
+console.log("ES6 map for of loop: ", people.get(personOne));
+console.log("ES6 map for of loop: ", people.get(personTwo));
 
 /////////////////////////////// ES6 set use add method to insert object
 /////////////////////////// and set destructuring
-let cars2=new Set();
-cars2.add('Audi');
-cars2.add('Ford');
-cars2.add('Mercedes');
-cars2.add('Audi');
-console.log("ES6 set not allowed duplicate 4-1,total number of cars: ",cars2.size);//size no () need,it is property not method
+let cars2 = new Set();
+cars2.add("Audi");
+cars2.add("Ford");
+cars2.add("Mercedes");
+cars2.add("Audi");
+console.log(
+  "ES6 set not allowed duplicate 4-1,total number of cars: ",
+  cars2.size
+); //size no () need,it is property not method
 
-for (let car of cars){
-  console.log("ES6 set for of loop: ",car)
+for (let car of cars) {
+  console.log("ES6 set for of loop: ", car);
 }
-let[a31,b31,c31]=cars2;
-console.log("set destructuring: ",a31, b31, c31)
+let [a31, b31, c31] = cars2;
+console.log("set destructuring: ", a31, b31, c31);
 /////////////////////////////// ES6 Weakset use add method to insert object
-let weakCars=new WeakSet();
+let weakCars = new WeakSet();
 
-weakCars.add({driver:"aby"});//object ,so must {} in () for add method 
-let passenger={passenger:"sarah"};
+weakCars.add({ driver: "aby" }); //object ,so must {} in () for add method
+let passenger = { passenger: "sarah" };
 weakCars.add(passenger);
-console.log("wekset has method: ",weakCars.has(passenger));
+console.log("wekset has method: ", weakCars.has(passenger));
+
+/////////////////////////////// ES6 Weakset not allowed any change to object properties
+let carSlides = [
+  { car: "Audi", seen: false },
+  { car: "BMW", seen: false },
+  { car: "Chevron", seen: false },
+  { car: "Cylinder", seen: false }
+];
+let carsViewed = new WeakSet(); //you cannot use carsViewed apply clicked
+function clicked(carSlides) {
+  //mutate each car seen property
+  carSlides.forEach(car => carsViewed.add(car));
+  carSlides.forEach(car => (car.seen = true));
+}
+clicked(carSlides);
+console.log(carSlides);
+console.log(carsViewed);
+/////////////////////////////// ES6 class and inheritance
+class Car5 {
+  constructor(carSpec) {
+    this.name = carSpec.name;
+    this.model = carSpec.model;
+    this.description = carSpec.description;
+  }
+  drive() {
+    console.log("Drving...");
+  }
+}
+//must use ({}) for new if para is object
+let carobj = new Car5({ name: "ford", model: "galaxy", description: "small" });
+console.log(carobj.drive());
+
+class Audi extends Car5 {
+  //
+  constructor(carSpec) {
+    super(carSpec);
+    this.engine = carSpec.engine;
+  }
+}
+
+let audi = new Audi({
+  name: "Audi",
+  model: "a3",
+  engine: "a313",
+  description: "best audi"
+});
+console.log(audi);
+
+/////////////////////////////// ES6,promise and promise all
+function waitingFor(name) {
+  console.log(`waiting for ${name}`);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (name === "Mike") {
+        reject(Error("Mike is always late!"));
+      } else {
+        resolve(name);
+      }
+    }, 2000);
+  });
+}
+// waitingFor("Abi").then(name => {
+//   console.log(`great we got ${name}`);
+// });
+
+function leave() {
+  console.log("Great we got everyone!");
+}
+
+// waitingFor('Abi').then(waitingFor('Thomas').then(waitingFor('John')))
+// .then(leave)
+var gotImpatient = function(error) {
+  console.log(error.message);
+  return Promise.resolve("we are leaving");
+};
+console.log("promise catch error case direclty:  \n");
+waitingFor("Abi")
+.then(function () { return waitingFor("Thomas")})
+.then(function () { return waitingFor("Mike")})
+.then(function () { return waitingFor("John")})
+.catch(gotImpatient)
+  .then(leave);
 
 
+function waitForFriend(name) {
+  return function() {
+    return waitingFor(name);
+  };
+}
 
-
-
+// waitingFor("Abi")
+//   .then(waitForFriend("Thomas"))
+//   .then(waitForFriend("Mike"))
+//   .then(waitForFriend("John"))
+//   .catch(gotImpatient)
+//   .then(leave);
+//// promise all
+// function waitForAll() {
+//   return Promise.all([
+// waitingFor('Allena'),
+// waitingFor('Rhoda'),
+// waitingFor('Joana')
+// ]);
+// }
+// waitForAll().then((firends)=>{
+//   console.log(`PromiseAll:   \n`);
+// console.log(`great!${firends[0]} is coming`);
+// console.log(`great!${firends[1]} is coming`);
+// console.log(`great!${firends[2]} is coming`);
+// })
