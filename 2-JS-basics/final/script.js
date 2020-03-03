@@ -1003,23 +1003,23 @@ function waitForFriend(name) {
   };
 }
 
-// waitingFor("Abi")
-//   .then(waitForFriend("Thomas"))
-//   .then(waitForFriend("Mike"))
-//   .then(waitForFriend("John"))
-//   .catch(gotImpatient)
-//   .then(leave);
-//// promise all
-// function waitForAll() {
-//   return Promise.all([
-// waitingFor('Allena'),
-// waitingFor('Rhoda'),
-// waitingFor('Joana')
-// ]);
-// }
-// waitForAll().then((firends)=>{
-//   console.log(`PromiseAll:   \n`);
-// console.log(`great!${firends[0]} is coming`);
-// console.log(`great!${firends[1]} is coming`);
-// console.log(`great!${firends[2]} is coming`);
-// })
+waitingFor("Abi")
+  .then(waitForFriend("Thomas"))
+  .then(waitForFriend("Mike"))
+  .then(waitForFriend("John"))
+  .catch(gotImpatient)
+  .then(leave);
+// promise all
+function waitForAll() {
+  return Promise.all([
+waitingFor('Allena'),
+waitingFor('Rhoda'),
+waitingFor('Joana')
+]);
+}
+waitForAll().then((firends)=>{
+  console.log(`PromiseAll:   \n`);
+console.log(`great!${firends[0]} is coming`);
+console.log(`great!${firends[1]} is coming`);
+console.log(`great!${firends[2]} is coming`);
+})
