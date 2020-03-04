@@ -943,7 +943,8 @@ class Car5 {
 }
 //must use ({}) for new if para is object
 let carobj = new Car5({ name: "ford", model: "galaxy", description: "small" });
-console.log(carobj.drive());
+carobj.drive();
+// console.log(carobj.drive());
 
 class Audi extends Car5 {
   //
@@ -990,12 +991,17 @@ var gotImpatient = function(error) {
 };
 console.log("promise catch error case direclty:  \n");
 waitingFor("Abi")
-.then(function () { return waitingFor("Thomas")})
-.then(function () { return waitingFor("Mike")})
-.then(function () { return waitingFor("John")})
-.catch(gotImpatient)
+  .then(function() {
+    return waitingFor("Thomas");
+  })
+  .then(function() {
+    return waitingFor("Mike");
+  })
+  .then(function() {
+    return waitingFor("John");
+  })
+  .catch(gotImpatient)
   .then(leave);
-
 
 function waitForFriend(name) {
   return function() {
@@ -1012,14 +1018,52 @@ waitingFor("Abi")
 // promise all
 function waitForAll() {
   return Promise.all([
-waitingFor('Allena'),
-waitingFor('Rhoda'),
-waitingFor('Joana')
-]);
+    waitingFor("Allena"),
+    waitingFor("Rhoda"),
+    waitingFor("Joana")
+  ]);
 }
-waitForAll().then((firends)=>{
+waitForAll().then(firends => {
   console.log(`PromiseAll:   \n`);
-console.log(`great!${firends[0]} is coming`);
-console.log(`great!${firends[1]} is coming`);
-console.log(`great!${firends[2]} is coming`);
-})
+  console.log(`great!${firends[0]} is coming`);
+  console.log(`great!${firends[1]} is coming`);
+  console.log(`great!${firends[2]} is coming`);
+});
+/////////////////////////////// get cookie
+function myFunction() {
+  var win = window.open("https://www.w3schools.com");
+  win.focus();
+}
+
+// window.open("https://www.geeksforgeeks.org", "_blank");
+var x = document.cookie;
+console.log("The browser cookie is:  ", x);
+
+////////////////////////////// get cookie1
+var allcookies = document.cookie;
+document.write("All Cookies : " + allcookies);
+
+// Get all the cookies pairs in an array
+cookiearray = allcookies.split(";");
+
+// Now take key value pair out of this array
+// for (var i = 0; i < cookiearray.length; i++) {
+//   name = cookiearray[i].split("=")[0];
+//   value = cookiearray[i].split("=")[1];
+//   consol.log("Key is : " + name + " and Value is : " + value);
+// }
+//////////
+function ReadCookie() {
+  var allcookies = document.cookie;
+  document.write("All Cookies : " + allcookies);
+
+  // Get all the cookies pairs in an array
+  cookiearray = allcookies.split(";");
+
+  // Now take key value pair out of this array
+  for (var i = 0; i < cookiearray.length; i++) {
+    name = cookiearray[i].split("=")[0];
+    value = cookiearray[i].split("=")[1];
+    document.write("Key is : " + name + " and Value is : " + value);
+  }
+}
