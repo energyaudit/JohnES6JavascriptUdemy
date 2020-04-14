@@ -367,7 +367,7 @@ yearsUntilRetirement(1969, "Jane");
 function whatDoYouDo(job, firstName) {}
 
 // Function expression
-var whatDoYouDo = function(job, firstName) {
+var whatDoYouDo = function (job, firstName) {
   switch (job) {
     case "teacher":
       return firstName + " teaches kids how to code";
@@ -462,7 +462,7 @@ var bills = [124, 48, 268];
 var tips = [
   tipCalculator(bills[0]),
   tipCalculator(bills[1]),
-  tipCalculator(bills[2])
+  tipCalculator(bills[2]),
 ];
 
 var finalValues = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
@@ -482,7 +482,7 @@ var john = {
   birthYear: 1990,
   family: ["Jane", "Mark", "Bob", "Emily"],
   job: "teacher",
-  isMarried: false
+  isMarried: false,
 };
 
 console.log("Object literal-john.firstName: ", john.firstName);
@@ -510,9 +510,9 @@ var john = {
   family: ["Jane", "Mark", "Bob", "Emily"],
   job: "teacher",
   isMarried: false,
-  calcAge: function() {
+  calcAge: function () {
     this.age = 2018 - this.birthYear;
-  } //function expression here
+  }, //function expression here
 };
 
 john.calcAge();
@@ -536,20 +536,20 @@ var john = {
   fullName: "John Smith",
   mass: 110,
   height: 1.95,
-  calcBMI: function() {
+  calcBMI: function () {
     this.bmi = this.mass / (this.height * this.height);
     return this.bmi;
-  }
+  },
 };
 
 var mark = {
   fullName: "Mark Miller",
   mass: 78,
   height: 1.69,
-  calcBMI: function() {
+  calcBMI: function () {
     this.bmi = this.mass / (this.height * this.height);
     return this.bmi;
-  }
+  },
 };
 
 if (john.calcBMI() > mark.calcBMI()) {
@@ -636,7 +636,7 @@ for (var i = john.length - 1; i >= 0; i--) {
 var john = {
   fullName: "John Smith",
   bills: [124, 48, 268, 180, 42],
-  calcTips: function() {
+  calcTips: function () {
     this.tips = [];
     this.finalValues = [];
 
@@ -657,13 +657,13 @@ var john = {
       this.tips[i] = bill * percentage;
       this.finalValues[i] = bill + bill * percentage;
     }
-  }
+  },
 };
 
 var mark = {
   fullName: "Mark Miller",
   bills: [77, 475, 110, 45],
-  calcTips: function() {
+  calcTips: function () {
     this.tips = [];
     this.finalValues = [];
 
@@ -684,7 +684,7 @@ var mark = {
       this.tips[i] = bill * percentage;
       this.finalValues[i] = bill + bill * percentage;
     }
-  }
+  },
 };
 
 function calcAverage(tips) {
@@ -720,7 +720,7 @@ if (john.average > mark.average) {
 var funcs = [];
 for (var i = 0; i < 5; i++) {
   //use var
-  funcs.push(function() {
+  funcs.push(function () {
     console.log("use var: ", i);
   });
 }
@@ -732,7 +732,7 @@ funcs[4]();
 var funcs1 = [];
 for (let i = 0; i < 5; i++) {
   //use let
-  funcs1.push(function() {
+  funcs1.push(function () {
     console.log("use let: ", i);
   });
 }
@@ -743,7 +743,7 @@ funcs1[4]();
 ////////////////////////////////rest operator,get args as array
 function sum(...numbers) {
   var result = 0;
-  numbers.forEach(function(number) {
+  numbers.forEach(function (number) {
     result += number;
   });
   return result;
@@ -765,24 +765,24 @@ console.log("spread operator,spread array as args: ", b);
 var person = {
   firstName: "John",
   lastName: "Smith",
-  getFullName: function() {
-    var name = function() {
+  getFullName: function () {
+    var name = function () {
       console.log(this.firstName + " " + this.lastName);
     };
     return name();
-  }
+  },
 };
 person.getFullName();
 
 var person1 = {
   firstName: "John",
   lastName: "Smith",
-  getFullName: function() {
-    var name = function() {
+  getFullName: function () {
+    var name = function () {
       console.log(this.firstName + " " + this.lastName);
     }.bind(this);
     return name();
-  }
+  },
 };
 person1.getFullName();
 ////////////////////////////////Object Initialization Short Hand
@@ -791,7 +791,7 @@ function createuser(firstName, lastName) {
   return {
     firstName: firstName,
     lastName: lastName,
-    fullName: fullName
+    fullName: fullName,
   };
 }
 let user = createuser("Dan", "Smith");
@@ -802,7 +802,7 @@ function createuser1(firstName, lastName) {
   return {
     firstName,
     lastName,
-    fullName
+    fullName,
   };
 }
 let user1 = createuser1("Dan", "Smith");
@@ -811,7 +811,7 @@ console.log(" Object Initialization Short Hand- after: ", user1);
 let obj = {
   x: 7,
   y: 8,
-  z: 9
+  z: 9,
 };
 let x1 = obj.x;
 let y1 = obj.y;
@@ -821,7 +821,7 @@ console.log("Object Destructuring-befoe", x1, y1, z1);
 let obj2 = {
   x2: 7,
   y2: 8,
-  z2: 9
+  z2: 9,
 };
 let { x2, y2, z2 } = obj2; //x2 must exact same as x2 in obj,because it is not parameter
 console.log("Object Destructuring-befoe", x2, y2, z2);
@@ -830,7 +830,7 @@ console.log("Object Destructuring-befoe", x2, y2, z2);
 let item = {
   id: 1,
   content: "ES6",
-  completed: false
+  completed: false,
 };
 let newItem = Object.assign({}, item, { completed: true });
 console.log("Object.assign", newItem, item);
@@ -858,10 +858,10 @@ for (let fruit of fruits1) {
 let services = [
   { name: "nails", activated: false },
   { name: "haircut", activated: true },
-  { name: "feet therapy", activated: true }
+  { name: "feet therapy", activated: true },
 ];
 //let activateserv = services.find(service => service.activated=true); //find activated=treu and return only first one
-let activateserv = services.find(service => (service.activated = true)); //
+let activateserv = services.find((service) => (service.activated = true)); //
 console.log("array find method", activateserv);
 
 /////////////////////////////// ES6 map ,key can be object
@@ -919,13 +919,13 @@ let carSlides = [
   { car: "Audi", seen: false },
   { car: "BMW", seen: false },
   { car: "Chevron", seen: false },
-  { car: "Cylinder", seen: false }
+  { car: "Cylinder", seen: false },
 ];
 let carsViewed = new WeakSet(); //you cannot use carsViewed apply clicked
 function clicked(carSlides) {
   //mutate each car seen property
-  carSlides.forEach(car => carsViewed.add(car));
-  carSlides.forEach(car => (car.seen = true));
+  carSlides.forEach((car) => carsViewed.add(car));
+  carSlides.forEach((car) => (car.seen = true));
 }
 clicked(carSlides);
 console.log(carSlides);
@@ -958,7 +958,7 @@ let audi = new Audi({
   name: "Audi",
   model: "a3",
   engine: "a313",
-  description: "best audi"
+  description: "best audi",
 });
 console.log(audi);
 
@@ -985,26 +985,26 @@ function leave() {
 
 // waitingFor('Abi').then(waitingFor('Thomas').then(waitingFor('John')))
 // .then(leave)
-var gotImpatient = function(error) {
+var gotImpatient = function (error) {
   console.log(error.message);
   return Promise.resolve("we are leaving");
 };
 console.log("promise catch error case direclty:  \n");
 waitingFor("Abi")
-  .then(function() {
+  .then(function () {
     return waitingFor("Thomas");
   })
-  .then(function() {
+  .then(function () {
     return waitingFor("Mike");
   })
-  .then(function() {
+  .then(function () {
     return waitingFor("John");
   })
   .catch(gotImpatient)
   .then(leave);
 
 function waitForFriend(name) {
-  return function() {
+  return function () {
     return waitingFor(name);
   };
 }
@@ -1020,10 +1020,10 @@ function waitForAll() {
   return Promise.all([
     waitingFor("Allena"),
     waitingFor("Rhoda"),
-    waitingFor("Joana")
+    waitingFor("Joana"),
   ]);
 }
-waitForAll().then(firends => {
+waitForAll().then((firends) => {
   console.log(`PromiseAll:   \n`);
   console.log(`great!${firends[0]} is coming`);
   console.log(`great!${firends[1]} is coming`);
@@ -1066,4 +1066,12 @@ function ReadCookie() {
     value = cookiearray[i].split("=")[1];
     document.write("Key is : " + name + " and Value is : " + value);
   }
+}
+
+console.log("FizzBuzz Test Here");
+for (var i = 1; i < 101; i++) {
+  if (i % 15 == 0) console.log("FizzBuzz");
+  else if (i % 3 == 0) console.log("Fizz");
+  else if (i % 5 == 0) console.log("Buzz");
+  else console.log(i);
 }
