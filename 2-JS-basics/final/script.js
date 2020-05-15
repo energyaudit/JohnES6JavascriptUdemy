@@ -836,6 +836,19 @@ let newItem = Object.assign({}, item, { completed: true });
 console.log("Object.assign", newItem, item);
 let newItem2 = { ...item, completed: "spread" }; //use {} not () because ... has no bracket,just object istself use {}
 console.log("spread same fun as Object.assign", newItem2); //"spread" must quoted by "" that any name not quoted will be variable and lead to undefined error
+
+let a11, b11, rest;
+[a11, b11] = [10, 20];
+
+console.log(a11);
+// expected output: 10
+
+console.log(b11);
+// expected output: 20
+
+[a11, b11, ...rest] = [10, 20, 30, 40, 50];
+
+console.log("use destructuring:  ", rest);
 /////////////////////////////// array destructuring
 let fruits = ["apple", "banana", "grape"];
 let a1 = fruits[0];
