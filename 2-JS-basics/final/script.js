@@ -81,6 +81,10 @@ console.log(johnOlder);
 
 // typeof operator
 console.log("typeof operator: " + typeof johnOlder);
+document.write(
+  `var johnOlder = ageJohn < ageMark;typeof johnOlder is ${typeof johnOlder}.` +
+    "<br>"
+);
 console.log("typeof operator: " + typeof ageJohn);
 console.log("typeof operator: " + typeof "Mark is older tha John");
 var x;
@@ -201,6 +205,9 @@ if (age < 13) {
   console.log(firstName + " is a teenager.");
 } else if (age >= 20 && age < 30) {
   console.log(firstName + " is a young man.");
+  document.write(
+    `if(){}else if(){}else if(){}else{} ${firstName} is a young man..` + "<br>"
+  );
 } else {
   console.log(firstName + " is a man.");
 }
@@ -209,18 +216,28 @@ if (age < 13) {
 //* The Ternary Operator and Switch Statements
 
 var firstName = "John";
-var age = 14;
+var age = 15;
 
 // Ternary operator
 age >= 18
   ? console.log(firstName + " drinks beer.")
   : console.log(firstName + " drinks juice.");
+age >= 18
+  ? console.log(firstName + " drinks beer.")
+  : document.write(
+      `var age = 15;age >= 18
+  ? console.log(firstName + " drinks beer.")
+  : console.log(firstName + " drinks juice."); ${firstName} drinks juice.` +
+        "<br>"
+    );
 
 var drink = age >= 18 ? "beer" : "juice";
 console.log(
   "logic operator precedence higher than assignment than Ternary: " + drink
 );
-
+document.write(
+  `var age = 15;var drink = age >= 18 ? "beer" : "juice"; ${drink}.` + "<br>"
+);
 if (age >= 18) {
   var drink = "beer";
 } else {
@@ -233,9 +250,13 @@ switch (job) {
   case "teacher":
   case "instructor":
     console.log(
-      "switch (job),and use break to exit, ornot will keep try other braches : " +
+      "switch (job),and use break to exit, ornot will keep try other branches : " +
         firstName +
         " teaches kids how to code."
+    );
+    document.write(
+      `var job = "instructor";switch (job){case"": break;:case"":break; default:switch (job),and use break to exit, ornot will keep try other branches : } ${firstName} teaches kids how to code.` +
+        "<br>"
     );
     break;
   case "driver":
@@ -283,8 +304,12 @@ if (height || height === 0) {
 } else {
   console.log(
     "falsy values: undefined, null, 0, '', NaN :if (height || height === 0) " +
-      firstName +
+      height +
       "Variable has NOT been defined"
+  );
+  document.write(
+    `height = "";falsy values: undefined, null, 0, '', NaN :if (height || height === 0)${height}  Variable has NOT been defined.` +
+      "<br>"
   );
 }
 
@@ -292,6 +317,10 @@ if (height || height === 0) {
 height = 23;
 if (height == "23") {
   console.log("The == operator does type coercion!");
+  document.write(
+    `height = 23;if (height == "23")  console.log("The == operator does type coercion!").` +
+      "<br>"
+  );
 }
 
 //* CODING CHALLENGE 2
@@ -333,7 +362,9 @@ if (scoreJohn > scoreMike) {
 // Functions
 
 function calculateAge(birthYear) {
-  return 2018 - birthYear;
+  var d = new Date();
+  var n = d.getFullYear();
+  return n - birthYear;
 }
 
 var ageJohn = calculateAge(1990);
@@ -344,6 +375,13 @@ console.log(
     ageJohn,
   ageMike,
   ageJane
+);
+document.write(
+  `function calculateAge(birthYear){  var d = new Date();
+  var n = d.getFullYear();return n - birthYear;}. ',' seperate different items in console log: "
+    ageJohn,
+  ageMike,
+  ageJane: ${ageJohn},${ageMike},${ageJane}.` + "<br>"
 );
 
 function yearsUntilRetirement(year, firstName) {
@@ -383,6 +421,12 @@ var whatDoYouDo = function (job, firstName) {
 console.log(
   "function expression with 2 para: " + whatDoYouDo("teacher", "John")
 );
+document.write(
+  `function expression with 2 para:var whatDoYouDo = function (job, firstName){switch (job) {}}.whatDoYouDo("teacher", "John"). ${whatDoYouDo(
+    "teacher",
+    "John"
+  )}.` + "<br>"
+);
 console.log(whatDoYouDo("designer", "Jane"));
 console.log(whatDoYouDo("retired", "Mark"));
 
@@ -402,7 +446,10 @@ console.log(
   "Mutate array data,exp last,names[names.length]:reassign array element:  " +
     names
 );
-
+document.write(
+  `var names = ["John", "Mark", "Jane"];Mutate array data,change the last one,names[names.length]="Mary"; new array: ${names}.` +
+    "<br>"
+);
 // Different data types
 var john = ["John", "Smith", 1990, "designer", false];
 
@@ -412,7 +459,11 @@ console.log(
   "javascript array can have Different data types,array push add at end,array unshift add at beginning :  " +
     john
 );
-
+document.write(
+  `var john = ["John", "Smith", 1990, "designer", false];john.push("blue"); //array push add at end
+john.unshift("Mr."); //array unshift add at beginning.javascript array can have Different data types,array push add at end,array unshift add at beginning :   ${john}.` +
+    "<br>"
+);
 john.pop();
 john.pop();
 john.shift();
@@ -420,18 +471,29 @@ console.log(john);
 
 console.log(" array john.indexOf(1990)  :  " + john.indexOf(1990));
 console.log(
-  " array element not in array index return -1 :john.indexOf(23)  " +
+  " if array element not in array index return -1 :john.indexOf(23)  " +
     john.indexOf(23)
 );
-
+document.write(
+  `array return element index:john.indexOf(1990)  : ${john.indexOf(
+    1990
+  )},if array element not in array index return -1 :john.indexOf(23): ${john.indexOf(
+    23
+  )}` + "<br>"
+);
 var isDesigner =
   john.indexOf("designer") === -1
     ? "John is NOT a designer"
     : "John IS a designer";
 console.log(
-  "array indexof judge if element inside then ternary:  " + isDesigner
+  "array indexof used to judge if element inside by ternary:  " + isDesigner
 );
-
+document.write(
+  `array indexof used to judge if element inside by ternary:var isDesigner =
+  john.indexOf("designer") === -1
+    ? "John is NOT a designer"
+    : "John IS a designer"; ${isDesigner}.` + "<br>"
+);
 //* CODING CHALLENGE 3
 
 //John and his family went on a holiday and went to 3 different restaurants. The bills were $124, $48 and $268.
