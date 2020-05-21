@@ -83,6 +83,7 @@ console.log(johnOlder);
 console.log("typeof operator: " + typeof johnOlder);
 document.write(
   `var johnOlder = ageJohn < ageMark;typeof johnOlder is ${typeof johnOlder}.` +
+    "<br>" +
     "<br>"
 );
 console.log("typeof operator: " + typeof ageJohn);
@@ -206,7 +207,9 @@ if (age < 13) {
 } else if (age >= 20 && age < 30) {
   console.log(firstName + " is a young man.");
   document.write(
-    `if(){}else if(){}else if(){}else{} ${firstName} is a young man..` + "<br>"
+    `if(){}else if(){}else if(){}else{} ${firstName} is a young man..` +
+      "<br>" +
+      "<br>"
   );
 } else {
   console.log(firstName + " is a man.");
@@ -228,6 +231,7 @@ age >= 18
       `var age = 15;age >= 18
   ? console.log(firstName + " drinks beer.")
   : console.log(firstName + " drinks juice."); ${firstName} drinks juice.` +
+        "<br>" +
         "<br>"
     );
 
@@ -236,7 +240,10 @@ console.log(
   "logic operator precedence higher than assignment than Ternary: " + drink
 );
 document.write(
-  `var age = 15;var drink = age >= 18 ? "beer" : "juice"; ${drink}.` + "<br>"
+  `var age = 15;var drink = age >= 18 ? "beer" : "juice"; ${drink}.` +
+    "<br>" +
+    "<br>" +
+    "<br>"
 );
 if (age >= 18) {
   var drink = "beer";
@@ -256,6 +263,7 @@ switch (job) {
     );
     document.write(
       `var job = "instructor";switch (job){case"": break;:case"":break; default:switch (job),and use break to exit, ornot will keep try other branches : } ${firstName} teaches kids how to code.` +
+        "<br>" +
         "<br>"
     );
     break;
@@ -309,6 +317,7 @@ if (height || height === 0) {
   );
   document.write(
     `height = "";falsy values: undefined, null, 0, '', NaN :if (height || height === 0)${height}  Variable has NOT been defined.` +
+      "<br>" +
       "<br>"
   );
 }
@@ -319,6 +328,7 @@ if (height == "23") {
   console.log("The == operator does type coercion!");
   document.write(
     `height = 23;if (height == "23")  console.log("The == operator does type coercion!").` +
+      "<br>" +
       "<br>"
   );
 }
@@ -381,7 +391,9 @@ document.write(
   var n = d.getFullYear();return n - birthYear;}. ',' seperate different items in console log: "
     ageJohn,
   ageMike,
-  ageJane: ${ageJohn},${ageMike},${ageJane}.` + "<br>"
+  ageJane: ${ageJohn},${ageMike},${ageJane}.` +
+    "<br>" +
+    "<br>"
 );
 
 function yearsUntilRetirement(year, firstName) {
@@ -425,7 +437,9 @@ document.write(
   `function expression with 2 para:var whatDoYouDo = function (job, firstName){switch (job) {}}.whatDoYouDo("teacher", "John"). ${whatDoYouDo(
     "teacher",
     "John"
-  )}.` + "<br>"
+  )}.` +
+    "<br>" +
+    "<br>"
 );
 console.log(whatDoYouDo("designer", "Jane"));
 console.log(whatDoYouDo("retired", "Mark"));
@@ -448,6 +462,7 @@ console.log(
 );
 document.write(
   `var names = ["John", "Mark", "Jane"];Mutate array data,change the last one,names[names.length]="Mary"; new array: ${names}.` +
+    "<br>" +
     "<br>"
 );
 // Different data types
@@ -462,6 +477,7 @@ console.log(
 document.write(
   `var john = ["John", "Smith", 1990, "designer", false];john.push("blue"); //array push add at end
 john.unshift("Mr."); //array unshift add at beginning.javascript array can have Different data types,array push add at end,array unshift add at beginning :   ${john}.` +
+    "<br>" +
     "<br>"
 );
 john.pop();
@@ -479,7 +495,9 @@ document.write(
     1990
   )},if array element not in array index return -1 :john.indexOf(23): ${john.indexOf(
     23
-  )}` + "<br>"
+  )}` +
+    "<br>" +
+    "<br>"
 );
 var isDesigner =
   john.indexOf("designer") === -1
@@ -492,7 +510,9 @@ document.write(
   `array indexof used to judge if element inside by ternary:var isDesigner =
   john.indexOf("designer") === -1
     ? "John is NOT a designer"
-    : "John IS a designer"; ${isDesigner}.` + "<br>"
+    : "John IS a designer"; ${isDesigner}.` +
+    "<br>" +
+    "<br>"
 );
 //* CODING CHALLENGE 3
 
@@ -526,7 +546,6 @@ var tips = [
   tipCalculator(bills[1]),
   tipCalculator(bills[2]),
 ];
-
 var finalValues = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(
@@ -534,7 +553,17 @@ console.log(
   tips,
   finalValues
 );
-
+document.write(
+  `var tips = [
+  tipCalculator(bills[0]),
+  tipCalculator(bills[1]),
+  tipCalculator(bills[2]),
+];
+var finalValues = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];pass array element as function para,
+ ${tips},${finalValues}.` +
+    "<br>" +
+    "<br>"
+);
 //* Objects and properties
 
 //Object literal
@@ -548,6 +577,18 @@ var john = {
 };
 
 console.log("Object literal-john.firstName: ", john.firstName);
+document.write(
+  `var john = {
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1990,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false,
+}; Object literal-john.firstName:is ${john.firstName}.` +
+    "<br>" +
+    "<br>"
+);
 console.log("Object literal-john['lastName']: ", john["lastName"]);
 var x = "birthYear";
 console.log("Object literal-john[x]: ", john[x]);
@@ -562,6 +603,15 @@ jane.firstName = "Jane";
 jane.birthYear = 1969;
 jane["lastName"] = "Smith";
 console.log("new Object syntax: ", jane);
+document.write(
+  `new Object syntax
+var jane = new Object();
+jane.firstName = "Jane";
+jane.birthYear = 1969;
+jane["lastName"] = "Smith";is ${jane}.console can see the object not document.write` +
+    "<br>" +
+    "<br>"
+);
 
 //* Objects and methods
 
@@ -581,6 +631,22 @@ john.calcAge();
 console.log(
   "Object method-function expression, this.age = 2018 - this.birthYear;method add a property:key and value : ",
   john
+);
+document.write(
+  `var john = {
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1992,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false,
+  calcAge: function () {
+    this.age = 2018 - this.birthYear;
+  }, //function expression here
+}; john.calcAge();is ` +
+    john.calcAge() +
+    "<br>" +
+    "<br>"
 );
 
 //* CODING CHALLENGE 4
@@ -1150,3 +1216,36 @@ for (var i = 1; i < 101; i++) {
   else if (i % 5 == 0) console.log("Buzz");
   else console.log(i);
 }
+////////// findMostReaptedWord in string
+function findMostReaptedWord(str) {
+  var res = str.split(" ");
+
+  var count;
+  var compareString;
+  for (var i = 0; i < res.length; i++) {
+    count = 0;
+    compareString = res[i];
+    for (j = 0; i < res.lenth; j++) {
+      if (compareString == res[j]) {
+        count++;
+      }
+    }
+  }
+}
+var str = "how do you do";
+document.write(
+  `var str = how do you do;findMostReaptedWord in string:   ${findMostReaptedWord(
+    str
+  )}.` + "<br>"
+);
+
+function wordsRepeatTimes(str, word) {
+  var number = str.split(word).length - 1;
+  return number;
+}
+var r = "Geeks For Geeks ";
+document.write(
+  `var str = "Geeks For Geeks "in string:   ${wordsRepeatTimes(r, "Geeks")}.` +
+    "<br>" +
+    "<br>"
+);
