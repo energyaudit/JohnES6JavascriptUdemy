@@ -46,18 +46,18 @@ console.log(
 age = "twenty eight";
 job = "driver";
 
-alert(
-  firstName +
-    " is a " +
-    age +
-    " year old " +
-    job +
-    ". Is he married? " +
-    isMarried
-);
+// alert(
+//   firstName +
+//     " is a " +
+//     age +
+//     " year old " +
+//     job +
+//     ". Is he married? " +
+//     isMarried
+// );
 
-var lastName = prompt("What is his last Name?");
-console.log(firstName + " " + lastName);
+// var lastName = prompt("What is his last Name?");
+// console.log(firstName + " " + lastName);
 
 /*****************************
 * Basic operators
@@ -475,22 +475,37 @@ console.log(jane);
 /*****************************
  * Objects and methods
  */
-/*
+
 var john = {
-   firstName: 'John',
-   lastName: 'Smith',
-   birthYear: 1992,
-   family: ['Jane', 'Mark', 'Bob', 'Emily'],
-   job: 'teacher',
-   isMarried: false,
-   calcAge: function() {
-       this.age = 2018 - this.birthYear;
-   }
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1992,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false,
+  calcAge: function () {
+    this.age = 2018 - this.birthYear;
+  },
 };
 
 john.calcAge();
 console.log(john);
-*/
+document.write(
+  `var john = {
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1992,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false,
+  calcAge: function () {
+    this.age = 2018 - this.birthYear;
+  }, //function expression here
+}; john.calcAge();is:${johnage}` +
+    john.calcAge() +
+    "<br>" +
+    "<br>"
+);
 
 /*****************************
  * CODING CHALLENGE 4

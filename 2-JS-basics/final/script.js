@@ -615,7 +615,7 @@ jane["lastName"] = "Smith";is ${jane}.console can see the object not document.wr
 
 //* Objects and methods
 
-var john = {
+var john1 = {
   firstName: "John",
   lastName: "Smith",
   birthYear: 1992,
@@ -627,7 +627,7 @@ var john = {
   }, //function expression here
 };
 
-john.calcAge();
+var johnage = john1.calcAge();
 console.log(
   "Object method-function expression, this.age = 2018 - this.birthYear;method add a property:key and value : ",
   john
@@ -643,8 +643,8 @@ document.write(
   calcAge: function () {
     this.age = 2018 - this.birthYear;
   }, //function expression here
-}; john.calcAge();is ` +
-    john.calcAge() +
+}; john.calcAge();is:${johnage}` +
+    john1.calcAge() +
     "<br>" +
     "<br>"
 );
@@ -690,6 +690,17 @@ if (john.calcBMI() > mark.calcBMI()) {
 } else {
   console.log("They have the same BMI");
 }
+document.write(
+  `var mark = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = this.mass / (this.height * this.height);
+    return this.bmi;
+  },
+}; ${john.calcBMI() > mark.calcBMI()}.` + "<br>"
+);
 
 //* Loops and iteration
 
@@ -725,10 +736,18 @@ var john = ["John", "Smith", 1990, "designer", false, "blue"];
 for (var i = 0; i < john.length; i++) {
   if (typeof john[i] !== "string") continue;
   console.log(john[i]);
+  document.write(
+    `continue: var john = ["John", "Smith", 1990, "designer", false, "blue"] if (typeof john[i] !== "string") continue; is ${john[i]}.` +
+      "<br>"
+  );
 }
 
 for (var i = 0; i < john.length; i++) {
   if (typeof john[i] !== "string") break;
+  document.write(
+    `break: var john = ["John", "Smith", 1990, "designer", false, "blue"] if (typeof john[i] !== "string") continue; is ${john[i]}.` +
+      "<br>"
+  );
   console.log(john[i]);
 }
 
@@ -866,6 +885,13 @@ for (let i = 0; i < 5; i++) {
 }
 funcs1[0]();
 console.log(funcs1[0]);
+document.write(
+  `for (let i = 0; i < 5; i++) {
+  //use let
+  funcs1.push(function () {
+    console.log("use let: ", i);
+  });is ${funcs1[0]}, ${funcs1[1]}, ${funcs1[4]}.` + "<br>"
+);
 funcs1[1]();
 funcs1[4]();
 ////////////////////////////////rest operator,get args as array
@@ -879,6 +905,15 @@ function sum(...numbers) {
 console.log(
   "rest operator,get args as array: ",
   sum(1, 2, 3, 4, 5, 6, 7, 8, 9)
+);
+document.write(
+  `function sum(...numbers) {
+  var result = 0;
+  numbers.forEach(function (number) {
+    result += number;
+  });
+  return result;
+} ${sum(1, 2, 3, 4, 5, 6, 7, 8, 9)}.` + "<br>"
 );
 let numbers = [1, 2, 3, 4, 5, 6];
 function sum(num1, num2, num3, num4, num5, num6) {
