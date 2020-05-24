@@ -615,7 +615,7 @@ jane["lastName"] = "Smith";is ${jane}.console can see the object not document.wr
 
 //* Objects and methods
 
-var john1 = {
+var john = {
   firstName: "John",
   lastName: "Smith",
   birthYear: 1992,
@@ -627,7 +627,7 @@ var john1 = {
   }, //function expression here
 };
 
-var johnage = john1.calcAge();
+john.calcAge();
 console.log(
   "Object method-function expression, this.age = 2018 - this.birthYear;method add a property:key and value : ",
   john
@@ -643,8 +643,7 @@ document.write(
   calcAge: function () {
     this.age = 2018 - this.birthYear;
   }, //function expression here
-}; john.calcAge();is:${johnage}` +
-    john1.calcAge() +
+}; john.calcAge();is:${john.age}` +
     "<br>" +
     "<br>"
 );
@@ -869,31 +868,42 @@ for (var i = 0; i < 5; i++) {
   //use var
   funcs.push(function () {
     console.log("use var: ", i);
+    document.write(
+      `use var the value of i won't change in each step of loop:${i}.` + "<br>"
+    );
   });
 }
 funcs[0]();
 console.log(funcs[0]);
 funcs[1]();
 funcs[4]();
-
+document.write(
+  `for (let i = 0; i < 5; i++) {
+  //use let,i value will change in each step of loop
+  funcs1.push(function () {
+    console.log("use let: ", i);
+  });for (var i = 0; i < 5; i++) {
+  //use var the value of i won't change in each step of loop
+  funcs.push(function () {
+    console.log("use var: ", i);
+  });
+},${fun0},${fun1},${fun4},+ "<br>"+ "<br>".`
+);
 var funcs1 = [];
 for (let i = 0; i < 5; i++) {
   //use let
   funcs1.push(function () {
     console.log("use let: ", i);
+    document.write(
+      `use let,i value will change in each step of loop: ${i}.` + "<br>"
+    );
   });
 }
-funcs1[0]();
-console.log(funcs1[0]);
-document.write(
-  `for (let i = 0; i < 5; i++) {
-  //use let
-  funcs1.push(function () {
-    console.log("use let: ", i);
-  });is ${funcs1[0]}, ${funcs1[1]}, ${funcs1[4]}.` + "<br>"
-);
-funcs1[1]();
-funcs1[4]();
+var fun0 = funcs1[0](); //there is no return ,so it is a void even you want to write to document
+var fun1 = funcs1[1]();
+var fun4 = funcs1[4]();
+console.log(funcs1[0]());
+
 ////////////////////////////////rest operator,get args as array
 function sum(...numbers) {
   var result = 0;
@@ -907,13 +917,13 @@ console.log(
   sum(1, 2, 3, 4, 5, 6, 7, 8, 9)
 );
 document.write(
-  `function sum(...numbers) {
+  `rest operator,function sum(...numbers) {
   var result = 0;
   numbers.forEach(function (number) {
     result += number;
   });
   return result;
-} ${sum(1, 2, 3, 4, 5, 6, 7, 8, 9)}.` + "<br>"
+} sum(1, 2, 3, 4, 5, 6, 7, 8, 9): ${sum(1, 2, 3, 4, 5, 6, 7, 8, 9)}.` + "<br>"
 );
 let numbers = [1, 2, 3, 4, 5, 6];
 function sum(num1, num2, num3, num4, num5, num6) {
@@ -923,6 +933,12 @@ console.log("spread operator,spread array as args: ", sum(...numbers));
 let a = [2, 3, 4];
 let b = [1, ...a, 5];
 console.log("spread operator,spread array as args: ", b);
+document.write(
+  `spread operator,let a = [2, 3, 4];
+let b = [1, ...a, 5]; is ${b}.` +
+    "<br>" +
+    "<br>"
+);
 
 ////////////////////////////////must use bind for nested function name(params) {
 var person = {
@@ -948,6 +964,20 @@ var person1 = {
   },
 };
 person1.getFullName();
+document.write(
+  `var person1 = {
+  firstName: "John",
+  lastName: "Smith",
+  getFullName: function () {
+    var name = function () {
+      console.log(this.firstName + " " + this.lastName);
+    }.bind(this);
+    return name();
+  },
+}; is ${person1.name}.` +
+    "<br>" +
+    "<br>"
+);
 ////////////////////////////////Object Initialization Short Hand
 function createuser(firstName, lastName) {
   let fullName = firstName + " " + lastName;
@@ -970,6 +1000,18 @@ function createuser1(firstName, lastName) {
 }
 let user1 = createuser1("Dan", "Smith");
 console.log(" Object Initialization Short Hand- after: ", user1);
+document.write(
+  `Object Initialization Short Hand:The function createuser1(firstName, lastName) {
+  let fullName = firstName + " " + lastName;
+  return {
+    firstName,
+    lastName,
+    fullName,
+  };
+} is ${user1.fullName} ` +
+    "<br>" +
+    "<br>"
+);
 ///////////////////////////////Object Destructuring
 let obj = {
   x: 7,
@@ -988,6 +1030,16 @@ let obj2 = {
 };
 let { x2, y2, z2 } = obj2; //x2 must exact same as x2 in obj,because it is not parameter
 console.log("Object Destructuring-befoe", x2, y2, z2);
+document.write(
+  `let obj2 = {
+  x2: 7,
+  y2: 8,
+  z2: 9,
+};Object Destructuring ,x2 must exact same as x2 in obj,because it is not parameter
+x2, y2, z2 is ${x2},${y2},${z2}.` +
+    "<br>" +
+    "<br>"
+);
 
 ///////////////////////////////Object.assign
 let item = {
@@ -999,7 +1051,11 @@ let newItem = Object.assign({}, item, { completed: true });
 console.log("Object.assign", newItem, item);
 let newItem2 = { ...item, completed: "spread" }; //use {} not () because ... has no bracket,just object istself use {}
 console.log("spread same fun as Object.assign", newItem2); //"spread" must quoted by "" that any name not quoted will be variable and lead to undefined error
-
+document.write(
+  `let newItem = Object.assign({}, item, { completed: true }); let newItem2 = { ...item, completed: "spread" }; is ${newItem.content},${newItem2.id}.` +
+    "<br>" +
+    "<br>"
+);
 let a11, b11, rest;
 [a11, b11] = [10, 20];
 
@@ -1284,3 +1340,12 @@ document.write(
     "<br>" +
     "<br>"
 );
+//////////
+const arrMin = (arr) => Math.min(...arr);
+arryMath = [20, 10, 5, 10];
+console.log("Math.min(...arr)", arrMin(arryMath));
+
+const arrMax = (arr) => Math.max(...arr);
+console.log("Math.max(...arr)", arrMax(arryMath));
+const arrSum = (arr) => arr.reduce((a, b) => a + b, 0);
+console.log("Math.sum(...arr)", arrSum(arryMath));
