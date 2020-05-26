@@ -1114,7 +1114,7 @@ let services = [
 let activateserv = services.find((service) => (service.activated = true)); //
 console.log("array find method", activateserv);
 document.write(
-  `let services = [
+  `array find method,let services = [
   { name: "nails", activated: false },
   { name: "haircut", activated: true },
   { name: "feet therapy", activated: true },
@@ -1130,7 +1130,7 @@ let carAge = new Map();
 carAge.set(carOne, 3);
 carAge.set(carTwo, 5);
 console.log("ES6 map ,key can be object", carAge);
-document.write(`The sum of ${a} and ${b} is ${a + b}.` + "<br>" + "<br>");
+document.write(`ES6 map ,key can be object, is ${carAge}.` + "<br>" + "<br>");
 
 /////////////////////////////// ES6 map for of loop
 let cars = new Map(); //M must capital
@@ -1148,6 +1148,14 @@ people.set(personOne, "David");
 people.set(personTwo, "Aby");
 console.log("ES6 map for of loop: ", people.get(personOne));
 console.log("ES6 map for of loop: ", people.get(personTwo));
+document.write(
+  `ES6  ES6 weakmap,let people = new WeakMap();weakmap key must be object,
+people.set(personOne, "David");  people.get(personOne)is ${people.get(
+    personOne
+  )}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////////////// ES6 set use add method to insert object
 /////////////////////////// and set destructuring
@@ -1165,6 +1173,11 @@ for (let car of cars) {
   console.log("ES6 set for of loop: ", car);
 }
 let [a31, b31, c31] = cars2;
+document.write(
+  `let cars2 = new Set();ES6 set use add method to insert object,let [a31, b31, c31] = cars2; is ${a31}, ${b31},${c31}.` +
+    "<br>" +
+    "<br>"
+);
 console.log("set destructuring: ", a31, b31, c31);
 /////////////////////////////// ES6 Weakset use add method to insert object
 let weakCars = new WeakSet();
@@ -1173,6 +1186,13 @@ weakCars.add({ driver: "aby" }); //object ,so must {} in () for add method
 let passenger = { passenger: "sarah" };
 weakCars.add(passenger);
 console.log("wekset has method: ", weakCars.has(passenger));
+document.write(
+  `weakCars.add({ driver: "aby" }); console.log("wekset has method: ", weakCars.has(passenger));is ${weakCars.has(
+    passenger
+  )}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////////////// ES6 Weakset not allowed any change to object properties
 let carSlides = [
