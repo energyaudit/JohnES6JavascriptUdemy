@@ -1066,8 +1066,12 @@ console.log(b11);
 // expected output: 20
 
 [a11, b11, ...rest] = [10, 20, 30, 40, 50];
-
 console.log("use destructuring:  ", rest);
+document.write(
+  ` [a11, b11, ...rest] = [10, 20, 30, 40, 50];use destructuring:rest: ${rest}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////// array destructuring
 let fruits = ["apple", "banana", "grape"];
 let a1 = fruits[0];
@@ -1078,6 +1082,11 @@ let [a2, b2, c2] = fruits;
 console.log("array destructuring1:", a2, b2, c2);
 let [a3, , c3] = fruits;
 console.log("array destructuring2:", a3, c3);
+document.write(
+  `array destructuring,let fruits = ["apple", "banana", "grape"];let [a3, , c3] = fruits;,a3, c3 is ${a3},${c3}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////// for of loop
 let fruits1 = ["apple", "banana", "grape"];
 for (let i in fruits1) {
@@ -1086,6 +1095,15 @@ for (let i in fruits1) {
 for (let fruit of fruits1) {
   console.log("for of loop:", fruit);
 }
+document.write(
+  `for (let i in fruits1) {
+  console.log("for in loop:", fruits1[i]);
+},for (let fruit of fruits1) {
+  console.log("for of loop:", fruit);
+} is ${fruits1}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////// array find method
 let services = [
   { name: "nails", activated: false },
@@ -1095,6 +1113,15 @@ let services = [
 //let activateserv = services.find(service => service.activated=true); //find activated=treu and return only first one
 let activateserv = services.find((service) => (service.activated = true)); //
 console.log("array find method", activateserv);
+document.write(
+  `let services = [
+  { name: "nails", activated: false },
+  { name: "haircut", activated: true },
+  { name: "feet therapy", activated: true },
+]; let activateserv = services.find((service) => (service.activated = true)); is ${activateserv}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////////////// ES6 map ,key can be object
 let carOne = { make: "Audi" };
@@ -1103,6 +1130,7 @@ let carAge = new Map();
 carAge.set(carOne, 3);
 carAge.set(carTwo, 5);
 console.log("ES6 map ,key can be object", carAge);
+document.write(`The sum of ${a} and ${b} is ${a + b}.` + "<br>" + "<br>");
 
 /////////////////////////////// ES6 map for of loop
 let cars = new Map(); //M must capital
