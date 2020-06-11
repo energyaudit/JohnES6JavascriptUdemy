@@ -1174,7 +1174,7 @@ for (let car of cars) {
 }
 let [a31, b31, c31] = cars2;
 document.write(
-  `let cars2 = new Set();ES6 set use add method to insert object,let [a31, b31, c31] = cars2; is ${a31}, ${b31},${c31}.` +
+  `let cars2 = new Set();ES6 set use add method to insert object,set destructuring,let [a31, b31, c31] = cars2; is ${a31}, ${b31},${c31}.` +
     "<br>" +
     "<br>"
 );
@@ -1206,6 +1206,12 @@ function clicked(carSlides) {
   //mutate each car seen property
   carSlides.forEach((car) => carsViewed.add(car));
   carSlides.forEach((car) => (car.seen = true));
+  document.write(
+    ` carSlides.forEach((car) => carsViewed.add(car));
+  carSlides.forEach((car) => (car.seen = true)); ${carsViewed}.` +
+      "<br>" +
+      "<br>"
+  );
 }
 clicked(carSlides);
 console.log(carSlides);
@@ -1225,7 +1231,11 @@ class Car5 {
 let carobj = new Car5({ name: "ford", model: "galaxy", description: "small" });
 carobj.drive();
 // console.log(carobj.drive());
-
+document.write(
+  `let carobj = new Car5({ name: "ford", model: "galaxy", description: "small" }); carobj.name;is ${carobj.name}.` +
+    "<br>" +
+    "<br>"
+);
 class Audi extends Car5 {
   //
   constructor(carSpec) {
