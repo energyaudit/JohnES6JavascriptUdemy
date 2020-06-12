@@ -96,7 +96,8 @@ function calculateAge(year) {
   console.log(this); //the this is gloabl which window here
 }
 
-/*If we use call and apply method with calling function, both of those methods take as their first parameter as execution context. that is this binding.*/
+/*If we use call and apply method with calling function, both of those methods take
+ as their first parameter as execution context. that is this binding.*/
 function bike() {
   console.log(this.name);
   document.write(` ${this.name}.`);
@@ -128,12 +129,20 @@ var john = {
 
     function innerFunction() {
       //even the function called from object
+      document.write(
+        `inner function inside method is not method ,its scope is window agin: 
+       ${this}.` +
+          "<br>" +
+          "<br>"
+      );
       console.log(
         "inner function inside method is not method ,its scope is window agin:  ",
         this
       ); //regular function again, so it is glabal object window
     }
     innerFunction();
+    let age = 2020 - this.yearOfBirth;
+    return age;
   },
 };
 
@@ -147,5 +156,11 @@ var mike = {
 console.log(
   "object method borrowing, mike.calculateAge = john.calculateAge;//function as variable:mike.calculateAge() \n "
 );
+
 mike.calculateAge = john.calculateAge; //function as variable
 mike.calculateAge();
+document.write(
+  `object method borrowing, mike.calculateAge = john.calculateAge; is ${mike.calculateAge()}.` +
+    "<br>" +
+    "<br>"
+);

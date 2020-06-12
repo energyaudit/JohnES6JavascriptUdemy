@@ -12,6 +12,8 @@ var Person = function (name, yearOfBirth, job) {
   this.job = job;
   this.calculateAge = function () {
     console.log(2016 - this.yearOfBirth);
+    let age = 2020 - this.yearOfBirth;
+    return age;
   };
 };
 
@@ -24,7 +26,18 @@ Person.prototype.lastName = "Smith";
 var john = new Person("John", 1990, "teacher");
 var jane = new Person("Jane", 1969, "designer");
 var mark = new Person("Mark", 1948, "retired");
-
+document.write(
+  `var Person = function (name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+  this.calculateAge = function () {
+    console.log(2016 - this.yearOfBirth);
+  };
+}; is ${john.calculateAge()}.` +
+    "<br>" +
+    "<br>"
+);
 john.calculateAge();
 jane.calculateAge();
 mark.calculateAge();
@@ -111,7 +124,7 @@ function arrayCalc(arr, fn) {
 
 function calculateAge(el) {
   //call back function
-  return 2016 - el;
+  return 2020 - el;
 }
 
 function isFullAge(el) {
@@ -129,6 +142,17 @@ function maxHeartRate(el) {
 }
 
 var ages = arrayCalc(years, calculateAge);
+document.write(
+  `var years = [1990, 1965, 1937, 2005, 1998];function arrayCalc(arr, fn) {
+  var arrRes = []; //arrayResult
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i])); //array build in push //method push value into array
+  }
+  return arrRes; //return arrayresult
+} is ${ages}.` +
+    "<br>" +
+    "<br>"
+);
 var fullAges = arrayCalc(ages, isFullAge);
 var rates = arrayCalc(ages, maxHeartRate);
 
@@ -147,6 +171,7 @@ function interviewQuestion(job) {
   } else if (job === "teacher") {
     return function (name) {
       console.log("What subject do you teach, " + name + "?");
+      return name + "what u teach?";
     };
   } else {
     return function (name) {
@@ -165,7 +190,29 @@ designerQuestion("Mark");
 designerQuestion("Mike");
 
 interviewQuestion("teacher")("Mark");
-
+document.write(
+  `Functions returning functions
+function interviewQuestion(job) {
+  if (job === "designer") {
+    return function (name) {
+      console.log(name + ", can you please explain what UX design is?");
+    };
+  } else if (job === "teacher") {
+    return function (name) {
+      console.log("What subject do you teach, " + name + "?");
+    };
+  } else {
+    return function (name) {
+      console.log("Hello " + name + ", what do you do?");
+    };
+  }
+},var teacherQuestion = interviewQuestion("teacher");
+teacherQuestion("John");interviewQuestion("teacher")("Mark");is ${interviewQuestion(
+    "teacher"
+  )("Mark")}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////
 // Lecture: IIFE
 //////////////IIFE1
@@ -177,17 +224,26 @@ game();
 
 (function () {
   var score = Math.random() * 10;
-  console.log(score >= 5);
+  console.log("ifei1-1", score >= 5);
 })();
 
-//console.log(score);//error because no access inside //ifei
+//if try outside: console.log(score);//error because no access inside ifei
 
-(function (goodLuck) {
+let ifei2 = (function (goodLuck) {
   var score = Math.random() * 10;
-  console.log(score >= 5 - goodLuck);
+  console.log("ifei1-2", score >= 5 - goodLuck);
+  return score >= 5 - goodLuck;
 })(5);
+document.write(
+  `(function (goodLuck) {
+  var score = Math.random() * 10;
+  console.log("ifei1-2", score >= 5 - goodLuck);
+})(5); if try outside: console.log(score);//error because no access inside ifei,:is ${ifei2}.` +
+    "<br>" +
+    "<br>"
+);
 //////////////IIFE2
-var studnetEnrollment = (function () {
+var studentEnrollment = (function () {
   //private variables which no one can change
   //except the function declared below.
   var count = 0;
@@ -201,12 +257,64 @@ var studnetEnrollment = (function () {
   }
   return innerFunc;
 })();
-var x = studnetEnrollment(); // S1
+var x = studentEnrollment(); // S1
 console.log("IIFE2", x);
-var y = studnetEnrollment(); // S2
+var y = studentEnrollment(); // S2
 console.log("IIFE2", y);
 /////////////////////////////
 // Lecture: Closures
+function createAnimal(name, job) {
+  // "Private" variables here
+  let _name = name;
+  let _job = job;
+
+  // Public variables here
+  return {
+    // Getter Methods
+    getName() {
+      return _name;
+    },
+    getJob() {
+      return _job;
+    },
+    // Setter Methods
+    setName(newName) {
+      _name = newName;
+    },
+    setJob(newJob) {
+      _job = newJob;
+    },
+  };
+}
+//
+//  We can then invoke the factory function to create new instances of an animal object. Note that every time we invoke the factory function, a new closure is created. Therefore, each returned object has access to its own closure.
+
+const presto = createAnimal("Presto", "Digger");
+const fluffykins = createAnimal("Fluffykins", "Jumper");
+// So what have we achieved by doing this? Well, with the power of closures, we have essentially emulated "private" variables in JavaScript.
+// These properties will be inaccessible
+console.log("closure make private variables possible", presto._name); // undefined
+console.log(presto._job); // undefined
+console.log(fluffykins._name); // undefined
+console.log(fluffykins._job); // undefined
+
+// Getter methods have access to the closure
+console.log(presto.getName()); // 'Presto'
+console.log(presto.getJob()); // 'Digger'
+console.log(fluffykins.getName()); // 'Fluffykins'
+console.log(fluffykins.getJob()); // 'Jumper'
+
+// Setter methods can mutate the variables in the closure
+presto.setName("Quick");
+presto.setJob("Bone Finder");
+fluffykins.setName("Mittens");
+fluffykins.setJob("Fish Eater");
+
+console.log(presto.getName()); // 'Quick'
+console.log(presto.getJob()); // 'Bone Finder'
+console.log(fluffykins.getName()); // 'Mittens'
+console.log(fluffykins.getJob()); // 'Fish Eater'
+
 //////////////Closures1
 var a = 10;
 function app() {
@@ -247,7 +355,7 @@ function makeAdder(x) {
 var add5 = makeAdder(5);
 var add10 = makeAdder(10);
 console.log(
-  "makeAdder is a function factory — it creates functions which can add a specific value, In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10. add5 and add10 are both closures. They share the same function body definition, but store different lexical environments. In add5's lexical environment, x is 5, while in the lexical environment for add10, x is 10"
+  "makeAdder is a function factory — it creates functions which can add a specific value, In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10. add5 and add10 are both closures.They share the same function body definition, but store different lexical environments.In add5's lexical environment, x is 5, while in the lexical environment for add10, x is 10"
 );
 console.log(add5(2)); // 7
 console.log(add10(2)); // 12

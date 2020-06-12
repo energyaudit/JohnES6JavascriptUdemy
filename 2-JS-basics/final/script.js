@@ -1313,6 +1313,17 @@ function waitForAll() {
     waitingFor("Joana"),
   ]);
 }
+document.write(
+  `function waitForAll() {
+  return Promise.all([
+    waitingFor("Allena"),
+    waitingFor("Rhoda"),
+    waitingFor("Joana"),
+  ]);
+}.` +
+    "<br>" +
+    "<br>"
+);
 waitForAll().then((firends) => {
   console.log(`PromiseAll:   \n`);
   console.log(`great!${firends[0]} is coming`);
@@ -1401,9 +1412,23 @@ document.write(
 //////////
 const arrMin = (arr) => Math.min(...arr);
 arryMath = [20, 10, 5, 10];
+document.write(
+  `arryMath = [20, 10, 5, 10];const arrMin = (arr) => Math.min(...arr).${arrMin(
+    arryMath
+  )}` +
+    "<br>" +
+    "<br>"
+);
 console.log("Math.min(...arr)", arrMin(arryMath));
 
 const arrMax = (arr) => Math.max(...arr);
 console.log("Math.max(...arr)", arrMax(arryMath));
+document.write(
+  `arryMath = [20, 10, 5, 10];const arrMax = (arr) => Math.max(...arr);,${arrMax(
+    arryMath
+  )}` +
+    "<br>" +
+    "<br>"
+);
 const arrSum = (arr) => arr.reduce((a, b) => a + b, 0);
 console.log("Math.sum(...arr)", arrSum(arryMath));
