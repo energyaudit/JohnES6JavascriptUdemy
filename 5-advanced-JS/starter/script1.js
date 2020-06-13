@@ -359,9 +359,20 @@ console.log(
 );
 console.log(add5(2)); // 7
 console.log(add10(2)); // 12
+document.write(
+  `function makeAdder(x) {
+  return function (y) {
+    return x + y;
+  };
+} ,makeAdder is a function factory —,var add5 = makeAdder(5);
+var add10 = makeAdder(10),They share the same function body definition, but store different lexical environments. In add5's lexical environment, x is 5, while in the lexical environment for add10, x is 10.
+is ${add5(2)}, ${add10(2)}.` +
+    "<br>" +
+    "<br>"
+);
+
 /*
 In essence, makeAdder is a function factory — it creates functions which can add a specific value to their argument. In the above example we use our function factory to create two new functions — one that adds 5 to its argument, and one that adds 10.
-
 add5 and add10 are both closures. They share the same function body definition, but store different lexical environments. In add5's lexical environment, x is 5, while in the lexical environment for add10, x is 10.
 */
 
@@ -458,6 +469,18 @@ var ages = arrayCalc(years, calculateAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 console.log(ages);
 console.log(fullJapan);
+
+document.write(
+  `function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
+} ,var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));is ${fullJapan}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////////////
 // CODING CHALLENGE
@@ -631,6 +654,7 @@ c) correct answer (I would use a number for this)
 /////////////////////the callback function
 function done() {
   console.log("the callback function:Done");
+  return true;
 }
 
 //the parent function
@@ -643,7 +667,17 @@ function increment(num, callBack) {
 
 //the callback function is passed to the increment function
 increment(10, done);
-
+document.write(
+  `function increment(num, callBack) {
+  for (var i = 0; i <= num; i++) {
+    console.log(i);
+  }
+  return callBack();
+} ,the callback function is passed to the increment function
+increment(10, done);is ${increment(10, done)}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////reverse string
 
 var string = "Welcome to this Javascript Guide!";
@@ -684,12 +718,22 @@ function dequeue(stackInput, stackOutput) {
 var arrayList = ["a", "b", "c", "d", "e", "f"]; // Created array
 var anotherArrayList = arrayList; // Referenced arrayList by another variable
 arrayList = []; // Empty the array
+document.write(
+  `arrayList = []; // Empty the arrayis ${arrayList}.` + "<br>" + "<br>"
+);
 // arrayList.length = 0;//Method 2
 console.log("arrayList is empty now:  ", arrayList);
 console.log(anotherArrayList);
 ///////////////////// check if object is array
 var arrayList = [1, 2, 3];
 console.log("is arrayList a array?  ", Array.isArray(arrayList));
+document.write(
+  `"is arrayList a array?  ", Array.isArray(arrayList) is ${Array.isArray(
+    arrayList
+  )}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////fizzbuzz
 for (let i = 1; i <= 20; i++) {
