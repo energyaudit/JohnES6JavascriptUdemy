@@ -741,6 +741,24 @@ for (let i = 1; i <= 20; i++) {
     b = i % 5 == 0;
   console.log(f ? (b ? "FizzBuzz" : "Fizz") : b ? "Buzz" : i);
 }
+document.write(
+  `for (let i = 1; i <= 20; i++) {
+  let f = i % 3 == 0,
+    b = i % 5 == 0;
+  console.log(f ? (b ? "FizzBuzz" : "Fizz") : b ? "Buzz" : i);
+} is .` +
+    "<br>" +
+    "<br>"
+);
+document.write(
+  `The sum of for (let i = 1; i <= 20; i++) {
+  let f = i % 3 == 0,
+    b = i % 5 == 0;
+  console.log(f ? (b ? "FizzBuzz" : "Fizz") : b ? "Buzz" : i);
+} is .` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////anagram
 var firstWord = "Mary";
 var secondWord = "Army";
@@ -755,9 +773,16 @@ function isAnagram(first, second) {
   // Sort the strings, and join the resulting array to a string. Compare the results
   a = a.split("").sort().join("");
   b = b.split("").sort().join("");
-
   return a === b;
 }
+
+document.write(
+  `  a = a.split("").sort().join("");
+  b = b.split("").sort().join("");
+  return a === b;is ${isAnagram("Mary", "Army")}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////type of argument
 function func(x) {
   console.log("function arugments type and length");
@@ -777,3 +802,11 @@ console.log(
   "Palindrome:A car, a man, a maraca",
   isPalindrome("A car, a man, a maraca")
 ); // logs 'true'
+document.write(
+  `function isPalindrome(str) {
+  str = str.replace(/\W/g, "").toLowerCase();//To replace all separate occurrences of a non-word char in a string,
+  return str == str.split("").reverse().join("");
+} is ${isPalindrome("level")}.` +
+    "<br>" +
+    "<br>"
+);

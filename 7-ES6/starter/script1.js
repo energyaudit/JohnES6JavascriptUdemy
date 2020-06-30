@@ -12,6 +12,7 @@ const name6 = "Jane Smith";
 let age6 = 23;
 //name6 = 'Jane Miller';
 console.log(name6);
+document.write(`const name6 = "Jane Smith"; is ${name6}.` + "<br>" + "<br>");
 
 // ES5
 function driversLicence5(passedTest) {
@@ -55,17 +56,22 @@ let i = 23;
 
 for (let i = 0; i < 5; i++) {
   console.log("scoped:" + i);
+  document.write(`for (let i = 0; i < 5; i++) : is ${i}.` + "<br>");
 }
-
 console.log("scoped i won't overwirte outsided i:" + i);
+document.write(
+  `scoped i won't overwirte outsided i: is ${i}.` + "<br>" + "<br>"
+);
 
 var ii = 23;
-
 for (var ii = 0; ii < 5; ii++) {
   console.log("var not for loop{} scoped:" + ii);
+  document.write(`for (var ii = 0; ii < 5; ii++)  : is ${ii}.` + "<br>");
 }
-
 console.log("var in for loop{} will overwirte outsided ii:" + ii);
+document.write(
+  `var in for loop{} will overwirte outsided ii: is ${ii}.` + "<br>" + "<br>"
+);
 
 /////////////////////////////////
 // Lecture: Blocks and IIFEs
@@ -78,7 +84,13 @@ console.log("var in for loop{} will overwirte outsided ii:" + ii);
 
 //console.log(a + b);
 console.log("var still accessiable out of {} scoped IIFE-var c:" + c);
-
+document.write(
+  `var still accessiable out of {} scoped IIFE-var c is ${c}.(function () {
+  var c = 3;
+})(); not accesible out of {}` +
+    "<br>" +
+    "<br>"
+);
 // ES5
 (function () {
   var c = 3;
@@ -116,13 +128,23 @@ console.log(
     yearOfBirth
   )} years old.`
 );
+document.write(
+  `-back ticks to use template is ${calcAge(yearOfBirth)}.` + "<br>" + "<br>"
+);
 
 const n = `${firstName} ${lastName}`;
 console.log("starWith:" + n.startsWith("j"));
 console.log("endWith:" + n.endsWith("Sm"));
 console.log("Contain:" + n.includes("oh"));
 console.log("Repeat:" + `${firstName} `.repeat(5));
-
+document.write(
+  `let firstName = "John";
+let lastName = "Smith";const n = ${firstName} ${lastName}; ${n.startsWith(
+    "j"
+  )}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////////
 // Lecture: Arrow functions
 
@@ -137,8 +159,21 @@ console.log(ages5);
 // ES6
 let ages6 = years.map((el) => 2016 - el);
 console.log(ages6);
-
+document.write(
+  `var ages5 = years.map(function (el) {
+  return 2016 - el;
+});,let ages6 = years.map((el) => 2016 - el); is ${ages6}.` +
+    "<br>" +
+    "<br>"
+);
 ages6 = years.map((el, index) => `Age element ${index + 1}: ${2016 - el}.`);
+document.write(
+  `ages6 = years.map((el, index) => Age element index + 1: 
+    2016 - el
+  .); is ${ages6}.` +
+    "<br>" +
+    "<br>"
+);
 console.log(ages6);
 
 ages6 = years.map((el, index) => {
@@ -147,12 +182,27 @@ ages6 = years.map((el, index) => {
   return `Age element ${index + 1}: ${age}.`;
 });
 console.log(ages6);
+document.write(
+  `ages6 = years.map((el, index) => {
+  const now = new Date().getFullYear();
+  const age = now - el;
+  return Age element .;
+}); is ${ages6}.` +
+    "<br>" +
+    "<br>"
+);
 
 /////////////////////////////////
 // Lecture: Arrow functions 2
 
 const myFunction = () => {
   console.log("arrow function as function" + this);
+  document.write(
+    `const myFunction = () => {
+  console.log("arrow function as function" + this); is ${this}.` +
+      "<br>" +
+      "<br>"
+  );
 };
 // call it
 myFunction();
@@ -209,12 +259,26 @@ var TryIt = {
       } else {
         txt = "You pressed Cancel!";
       }
-
       document.getElementById("demo").innerHTML = txt;
     });
   },
 };
 TryIt.clickMe();
+document.write(
+  `The clickMe: function () {
+    document.querySelector(".it").addEventListener("click", function () {
+      var txt;
+      if (confirm("Press a button!")) {
+        txt = "You pressed OK!";
+      } else {
+        txt = "You pressed Cancel!";
+      }
+      document.getElementById("demo").innerHTML = txt;
+    });
+  },.` +
+    "<br>" +
+    "<br>"
+);
 
 // ES6
 const box6 = {
@@ -254,12 +318,15 @@ Person.prototype.myFriends5 = function (friends) {
       return this.name + " is friends with " + el;
     }.bind(this)
   );
-
   console.log(arr);
+  return arr;
 };
 
 var friends = ["Bob", "Jane", "Mark"];
-new Person("John").myFriends5(friends);
+let john1 = new Person("John").myFriends5(friends);
+document.write(
+  `new Person("John").myFriends5(friends);is ${john1}.` + "<br>" + "<br>"
+);
 
 // ES6
 Person.prototype.myFriends6 = function (friends) {
