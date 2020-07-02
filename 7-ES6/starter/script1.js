@@ -325,7 +325,17 @@ Person.prototype.myFriends5 = function (friends) {
 var friends = ["Bob", "Jane", "Mark"];
 let john1 = new Person("John").myFriends5(friends);
 document.write(
-  `new Person("John").myFriends5(friends);is ${john1}.` + "<br>" + "<br>"
+  `Person.prototype.myFriends5 = function (friends) {
+    var arr = friends.map(
+      function (el) {
+        return this.name + " is friends with " + el;
+      }.bind(this)
+    );
+    console.log(arr);
+    return arr;
+  };new Person("John").myFriends5(friends);is ${john1}.` +
+    "<br>" +
+    "<br>"
 );
 
 // ES6
@@ -348,7 +358,11 @@ var john = ["John", 26];
 const [name, age] = ["John", 26];
 console.log("Destructuring Name:" + name);
 console.log("Destructuring age:" + age);
-
+document.write(
+  ` Destructuring:const [name, age] = ["John", 26]; ${name} , ${age}.` +
+    "<br>" +
+    "<br>"
+);
 const obj = {
   firstName6: "John",
   lastName6: "Smith",
@@ -357,12 +371,18 @@ const obj = {
 const { firstName6, lastName6 } = obj;
 console.log("Destructuring FirstName:" + firstName);
 console.log("Destructuring LastName:" + lastName);
-
-const { firstName6: a, lastName6: b } = obj;
-console.log("Destructuring FirstName and rename a:" + a);
-console.log("Destructuring LastName and rename b:" + b);
-
+document.write(
+  `const obj = {
+  firstName6: "John",
+  lastName6: "Smith",
+};const { firstName6, lastName6 } = obj; and ${firstName6} , ${lastName6}.` +
+    "<br>" +
+    "<br>"
+);
 function calcAgeRetirement(year) {
+  const { firstName6: a, lastName6: b } = obj;
+  console.log("Destructuring FirstName and rename a:" + a);
+  console.log("Destructuring LastName and rename b:" + b);
   const age = new Date().getFullYear() - year;
   return [age, 65 - age];
 }
@@ -370,11 +390,23 @@ function calcAgeRetirement(year) {
 const [age2, retirement] = calcAgeRetirement(1990);
 console.log("Destructuring function returned array:age:" + age2);
 console.log("Destructuring function returned array retriement:" + retirement);
+document.write(
+  `function calcAgeRetirement(year) {
+  const { firstName6: a, lastName6: b } = obj;
+  console.log("Destructuring FirstName and rename a:" + a);
+  console.log("Destructuring LastName and rename b:" + b);
+    const age = new Date().getFullYear() - year;
+    return [age, 65 - age];
+  }
+    const [age2, retirement] = calcAgeRetirement(1990); ${age2}; ${retirement}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////////
 // Lecture: Arrays
 
 const boxes = document.querySelectorAll(".box");
-
+console.log(boxes);
 //ES5
 var boxesArr5 = Array.prototype.slice.call(boxes);
 boxesArr5.forEach(function (cur) {
@@ -391,10 +423,30 @@ for (var ii = 0; ii < boxesArr5.length; ii++) {
     continue;
     //break//will stop and not execute next line
   }
-
   boxesArr5[ii].textContent = "I changed to blue!";
 }
-
+document.write(
+  `const boxes = document.querySelectorAll(".box");var boxesArr5 = Array.prototype.slice.call(boxes);
+//it converts an arguments object into an Array //
+  boxesArr5.forEach(function (cur) {
+  cur.style.backgroundColor = "dodgerblue";
+});for (var ii = 0; ii < boxesArr5.length; ii++) {
+  if (boxesArr5[ii].className === "box blue") {
+    continue;
+    //break//will stop and not execute next line
+  }
+  boxesArr5[ii].textContent = "I changed to blue!";
+} .//ES6
+const boxesArr6 = Array.from(boxes);
+Array.from(boxes).forEach((cur) => (cur.style.backgroundColor = "dodgerblue"));for (const cur of boxesArr6) {
+  if (cur.className.includes("blue")) {
+    continue;
+  }
+  cur.textContent = "I changed to blue!";
+}` +
+    "<br>" +
+    "<br>"
+);
 //ES6
 for (const cur of boxesArr6) {
   if (cur.className.includes("blue")) {
@@ -405,15 +457,21 @@ for (const cur of boxesArr6) {
 
 //ES5
 var ages = [12, 17, 8, 21, 14, 11];
-
 var full = ages.map(function (cur) {
   return cur >= 18;
 });
 console.log(">=18 returned array:age:", full);
-
 console.log("index of value true: ", full.indexOf(true));
 console.log("array element of value true: ", ages[full.indexOf(true)]);
-
+document.write(
+  `var ages = [12, 17, 8, 21, 14, 11];
+var full = ages.map(function (cur) {
+  return cur >= 18;
+});
+full is: ${full}; array element of value true is ${ages[full.indexOf(true)]}.` +
+    "<br>" +
+    "<br>"
+);
 //ES6
 console.log(
   "index of value true: ",
@@ -423,7 +481,15 @@ console.log(
   "array element of value true: ",
   ages.find((cur) => cur >= 18)
 );
-
+document.write(
+  ` "index of value true: ",
+ages.findIndex((cur) => cur >= 18): ${ages.findIndex(
+    (cur) => cur >= 18
+  )} and  "array element of value true: ",
+ages.find((cur) => cur >= 18) is: ${ages.find((cur) => cur >= 18)}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////////
 // Lecture: Spread operator
 
@@ -438,7 +504,15 @@ console.log(sum1);
 var ages = [18, 30, 12, 21];
 var sum2 = addFourAges.apply(null, ages);
 console.log("array apply method: ", sum2);
-
+document.write(
+  `function addFourAges(a, b, c, d) {
+  return a + b + c + d;
+}var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);:${sum2} //ES6
+const sum3 = addFourAges(...ages);.` +
+    "<br>" +
+    "<br>"
+);
 //ES6
 const sum3 = addFourAges(...ages);
 console.log("ES6 array Spread operator: ", sum3);
