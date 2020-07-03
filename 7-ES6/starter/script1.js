@@ -505,7 +505,7 @@ var ages = [18, 30, 12, 21];
 var sum2 = addFourAges.apply(null, ages);
 console.log("array apply method: ", sum2);
 document.write(
-  `function addFourAges(a, b, c, d) {
+  `Spread operator,,function addFourAges(a, b, c, d) {
   return a + b + c + d;
 }var ages = [18, 30, 12, 21];
 var sum2 = addFourAges.apply(null, ages);:${sum2} //ES6
@@ -516,16 +516,21 @@ const sum3 = addFourAges(...ages);.` +
 //ES6
 const sum3 = addFourAges(...ages);
 console.log("ES6 array Spread operator: ", sum3);
-
+document.write(
+  `//ES6
+const sum3 = addFourAges(...ages); is ${sum3}.` +
+    "<br>" +
+    "<br>"
+);
 const familySmith = ["John", "Jane", "Mark"];
 const familyMiller = ["Mary", "Bob", "Ann"];
 const bigFamily = [...familySmith, "Lily", ...familyMiller];
 console.log("ES6 array Spread operator: ", bigFamily);
-
+document.write(`ES6 array Spread operator:is ${bigFamily}.` + "<br>" + "<br>");
 const h = document.querySelector("h1");
-const boxess = document.querySelectorAll(".box"); //nodelis because querySelectorAll
+const boxess = document.querySelectorAll(".box"); //nodelist because querySelectorAll
 const all = [h, ...boxess];
-
+console.log("ES6 array Spread operator: ", all);
 Array.from(all).forEach((cur) => (cur.style.color = "purple"));
 
 // Lecture: Rest parameters
@@ -547,11 +552,26 @@ isFullAge5(1990, 1999, 1965);
 isFullAge5(1990, 1999, 1965, 2016, 1987);
 
 //ES6
-function isFullAge6(...years) {
-  console.log("...years will change paras into array already", years);
-  years.forEach((cur) => console.log(2016 - cur >= 18));
-}
 
+function isFullAge6(...years) {
+  console.log(
+    "...years will change paras into array already by ... operator",
+    years
+  );
+  let fullage6 = [];
+  years.forEach((cur) => {
+    console.log(2016 - cur >= 18);
+    fullage6.push(2020 - cur > 18);
+  });
+  return fullage6;
+}
+document.write(
+  `function isFullAge6(...years) {
+    years.forEach((cur) => console.log(2016 - cur >= 18));
+} is ${isFullAge6(1990, 1999, 1965, 2016, 1987)}.` +
+    "<br>" +
+    "<br>"
+);
 isFullAge6("...years: Rest parameters:       ", 1990, 1999, 1965, 2016, 1987);
 
 //ES5
@@ -574,10 +594,26 @@ isFullAge55(1990, 1999, 1965, 2016, 1987);
 //ES6
 function isFullAge66(limit, ...years) {
   console.log("ES6 will read para  years after first para smartly ", years);
-  years.forEach((cur) => console.log(2016 - cur >= limit));
+  let fullage66 = [];
+  years.forEach((cur) => {
+    console.log(2016 - cur >= limit);
+    fullage66.push(2020 - cur >= limit);
+  });
+  return fullage66;
 }
 
 isFullAge66(16, 1990, 1999, 1965, 2016, 1987);
+document.write(
+  `function isFullAge66(limit, ...years) {
+  console.log("ES6 will read para  years after first para smartly ", years);
+  let fullage66=[];
+  years.forEach((cur) =>{console.log(2016 - cur >= limit);fullage66.push(2020 - cur >= limit)} );
+  return fullage66;
+}
+ is ${isFullAge66(16, 1990, 1999, 1965, 2016, 1987)}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////////////////
 // Lecture: Default parameters
 
@@ -594,6 +630,15 @@ function SmithPerson5(firstName, yearOfBirth, lastName, nationality) {
   this.nationality = nationality;
 }
 var john = new SmithPerson5("John", 1990);
+document.write(
+  ` Default parameters;lastName === undefined ? (lastName = "Smith") : (lastName = lastName);
+nationality === undefined
+  ? (nationality = "american")
+  : (nationality = nationality);
+is ${john},${john.lastName}.` +
+    "<br>" +
+    "<br>"
+);
 console.log("ES5 default para john:   ", john);
 var emily = new SmithPerson5("Emily", 1983, "Diaz", "spanish");
 console.log("ES5 default para emily:   ", emily);
@@ -612,6 +657,22 @@ function SmithPerson6(
 }
 
 var john = new SmithPerson6("John", 1990);
+document.write(
+  `ES6
+function SmithPerson6(
+  firstName,
+  yearOfBirth,
+  lastName = "Smith",
+  nationality = "american"
+) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
+} is ${john},${john.lastName}.` +
+    "<br>" +
+    "<br>"
+);
 console.log("ES6 default para john:  ", john);
 var emily = new SmithPerson6("Emily", 1983, "Diaz", "spanish");
 console.log("ES6 default para emily:   ", emily);
@@ -636,6 +697,24 @@ console.log(
   "key showing as number,string,bullen in following exp:   ",
   question
 );
+document.write(
+  `const question = new Map();
+question.set(
+  "question",
+  "What is the official name of the latest major JavaScript version?"
+);
+question.set(1, "ES5");
+question.set(2, "ES6");
+question.set(3, "ES2015");
+question.set(4, "ES7");
+question.set("correct", 3);
+question.set(true, "Correct answer :D");
+question.set(false, "Wrong, please try again!"); is ${question},${question.get(
+    "question"
+  )},,${question.size}.` +
+    "<br>" +
+    "<br>"
+);
 console.log("get map value by key:   ", question.get("question"));
 console.log("array use length and map use size:   ", question.size);
 
@@ -646,12 +725,15 @@ if (question.has(4)) {
 
 //question.clear();
 
-question.forEach((value, key) =>
+question.forEach((value, key) => {
   console.log(
     "map for each loop:   ",
     `This is ${key}, and it's set to ${value}`
-  )
-);
+  );
+  document.write(
+    `question.forEach((value, key) => ${key} is ${value}.` + "<br>"
+  );
+});
 
 console.log("only console when key is number :   \n");
 for (let [key, value] of question.entries()) {
@@ -660,6 +742,23 @@ for (let [key, value] of question.entries()) {
   }
 }
 
+function returnkeyNumberOnlyOfMap(inputMap) {
+  let newMap = new Map();
+  for (let [key, value] of inputMap.entries()) {
+    if (typeof key === "number") {
+      console.log(`Answer ${key}: ${value}`);
+      newMap.set(key, value);
+    }
+  }
+  return newMap;
+}
+
+console.log(returnkeyNumberOnlyOfMap(question));
+document.write(
+  `if (typeof key === "number") is ${returnkeyNumberOnlyOfMap(question)}.` +
+    "<br>" +
+    "<br>"
+);
 //const ans = parseInt(prompt('Write the correct answer'));
 //console.log(question.get(ans === question.get('correct')));
 /////////////////////////////////
@@ -693,20 +792,42 @@ class Person6 {
     this.yearOfBirth = yearOfBirth;
     this.job = job;
   }
-
   calculateAge() {
     var age = new Date().getFullYear() - this.yearOfBirth;
     console.log("ES6 class calculate age :   ", age);
+    return age;
   }
-
   static greeting() {
     console.log("static method called without object :   ", "Hey there!");
+    document.write(
+      `"static method called without object :   ", "Hey there!"` +
+        "<br>" +
+        "<br>"
+    );
   }
 }
 
 const john6 = new Person6("John", 1990, "teacher");
 
 Person6.greeting();
+document.write(
+  `//ES6,class Person6 {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+  calculateAge() {
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log("ES6 class calculate age :   ", age);
+  }
+  static greeting() {
+    console.log("static method called without object :   ", "Hey there!");
+     }
+}is ${john6.calculateAge()}.` +
+    "<br>" +
+    "<br>"
+);
 console.log(john6);
 age6j = john6.calculateAge();
 //console.log(age6j);
@@ -894,3 +1015,47 @@ function reportStreets(s) {
 
 reportParks(allParks);
 reportStreets(allStreets);
+
+/////////////////////////////////How would you use a closure to create a private counter?
+function counter() {
+  var _counter = 0;
+  // return an object with several functions that allow you
+  // to modify the private _counter variable
+  return {
+    add: function (increment) {
+      _counter += increment;
+    },
+    retrieve: function () {
+      return "The counter is currently at: " + _counter;
+    },
+  };
+}
+// error if we try to access the private variable like below
+// _counter;
+// usage of our counter function
+var c = counter();
+c.add(5);
+c.add(9);
+// now we can access the private variable in the following way
+c.retrieve(); // => The counter is currently at: 14
+document.write(
+  `function counter() {
+  var _counter = 0;
+  // return an object with several functions that allow you
+  // to modify the private _counter variable
+  return {
+    add: function (increment) {
+      _counter += increment;
+    },
+    retrieve: function () {
+      return "The counter is currently at: " + _counter;
+    },
+  };
+} is ${c.retrieve()}.` +
+    "<br>" +
+    "<br>"
+);
+
+document.write(
+  `Number.isInteger(123) //true is ${Number.isInteger(123)}.` + "<br>" + "<br>"
+);

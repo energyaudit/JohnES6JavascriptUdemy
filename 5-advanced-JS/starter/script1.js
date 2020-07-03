@@ -783,6 +783,17 @@ document.write(
     "<br>" +
     "<br>"
 );
+/////////////////////duplicate([1, 2, 3, 4, 5]);
+function duplicate(arr) {
+  return arr.concat(arr);
+}
+document.write(
+  `function duplicate(arr) {
+  return arr.concat(arr);
+} is ${duplicate([1, 2, 3, 4, 5])}.` +
+    "<br>" +
+    "<br>"
+);
 /////////////////////type of argument
 function func(x) {
   console.log("function arugments type and length");
